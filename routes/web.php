@@ -12,18 +12,35 @@
 */
 
 
-//Auth::routes();
-//
-//Route::get('/home', 'HomeController@index')->name('home');
-
 Route::prefix('/')->namespace('Web')->group(function(){
+
+    // show the page page
     Route::get('/', 'HomeController@index');
-    Route::get('/recursos', 'ResourceController@index'); //resource list
-    Route::get('/recursos/{slug}', 'ResourceController@show'); // show single resource
+
+    // resource list
+    Route::get('/recursos', 'ResourceController@index');
+
+    // show resource create form
+    Route::get('/recursos/crear', 'ResourceController@showCreate')->middleware('auth');
+
+    // show single resource
+    Route::get('/recursos/{slug}', 'ResourceController@show');
+
+
 });
 
 Route::prefix('/')->namespace('Auth')->group(function(){
-    Route::get('ingreser', 'LoginController@showLoginForm');
-    Route::post('login', 'LoginController@authenticate');
-    Route::get('salir', 'LoginController@logout');
+
+    // show web login form
+    Route::get('ingreser', 'LoginController@showLoginForm')->name('login');
 });
+
+Route::prefix('/')->namespace('Api\V1')->group(function(){
+
+    // login from web by using api
+    Route::post('login', 'AuthenticateController@authenticate');
+
+    // logout from web by using api
+    Route::post('logout', 'AuthenticateController@logout');
+});
+

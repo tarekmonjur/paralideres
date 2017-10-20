@@ -4,7 +4,7 @@
 <!-- =========================
     START BANNER SECTION
 ============================== -->
-<section class="banner_area">
+<section class="banner_area" @if(!$auth) id="auth" @endif>
     <div class="container">
         <div class="row">
             {{--<div id="banner_slider" class="owl-carousel owl-theme">--}}
@@ -62,7 +62,7 @@
     END BANNER SECTION
 ============================== --> 
 
-
+<div id="app">
 <!-- =========================
     START CATEGORY SECTION
 ============================== -->
@@ -186,7 +186,8 @@
 </section>                                  
 <!-- =========================
     END OPTION SECTION
-============================== --> 
+============================== -->
+</div>
 @endsection
 
 @section('scripts')

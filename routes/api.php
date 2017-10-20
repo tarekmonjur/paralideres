@@ -14,10 +14,10 @@ Route::group(['prefix' => 'account', 'namespace' => 'Api\V1'], function() {
 
     // All this is handled via web
     // Authentication route
-     Route::post('login', 'AuthenticateController@authenticate');
+//     Route::post('login', 'AuthenticateController@authenticate');
 
     // Clear cookie route
-//     Route::get('logout', 'AuthenticateController@logout');
+//     Route::post('logout', 'AuthenticateController@logout');
 
     // Password reset link request routes...
     // Route::post('password/email', 'Auth\PasswordController@postEmail');

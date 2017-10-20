@@ -17,12 +17,15 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{url('/')}}">inicio</a></li>
                     <li><a href="{{url('recursos')}}">recursos</a></li>
+                    @if($auth)
+                    <li><a href="{{url('recursos/crear')}}">crear recurso</a></li>
+                    @endif
                     <li><a href="#">icuestas</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
             @if($auth)
-            <div class="home_login">
-                <a href="{{url('salir')}}">salir</a>
+            <div class="home_login" id="auth">
+                <a href="#" v-on:click.prevent="logout">salir</a>
             </div>
             @else
             <div class="home_login">

@@ -52,14 +52,35 @@ class ResourceController extends Controller
         $limit = $limit > 0 && $limit < 20 ? $limit : 20;
 
         $user_id = ($this->auth)?$this->auth->id:null;
-        $resources = Resource::with(['likesCount', 'category', 'user', 'like' => function($q)use($user_id){
-                $q->where('user_id', $user_id);
-            }])
-            ->orderBy('created_at', 'desc')
+        $category_id = ($request->has('category_id'))?$request->category_id:null;
+        $search_text = ($request->has('search_text'))?$request->search_text:null;
+
+        $resources = Resource::with(
+            ['likesCount', 'category', 'user',
+                'like' => function($q)use($user_id){
+                    $q->where('user_id', $user_id);
+                }
+            ]);
+        if(!empty($category_id)){
+            $resources->where('category_id', $category_id);
+        }
+        if(!empty($search_text)){
+            $resources->where('title', 'like', '%'.$search_text.'%');
+        }
+        $resources = $resources->orderBy('created_at', 'desc')
             ->Paginate($limit);
+
+        $resources->appends('category_id', $category_id);
+        $resources->appends('search_text', $search_text);
+
         return $this->setResponse($resources,'success','OK','200','','');
     }
 
+    /**
+     * Home page resource search option
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function search(Request $request)
     {
         // Create Request to Handle this limit Type

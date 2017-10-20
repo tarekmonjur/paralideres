@@ -1,9 +1,9 @@
 @extends('layouts.layout')
 @section('content')
-
+<div id="app">
 <!-- =========================
         START BANNER SECTION
-    ============================== -->
+============================== -->
 <section class="recurso_content_area form_hide_m">
     <div class="container">
         <div class="row">
@@ -200,7 +200,7 @@
 <!-- =========================
     END OPTION SECTION
 ============================== -->
-
+</div>
 @endsection
 
 @section('scripts')

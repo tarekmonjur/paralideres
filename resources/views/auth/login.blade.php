@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('content')
 
-<div class="login_content">
+<div class="login_content" id="auth">
     <div class="login_inner">
         <h2>Ingresa a Paralideres.org</h2>
         <form id="login_form" v-on:submit.prevent="login('login_form','login')">
@@ -23,8 +23,4 @@
     </div>
 </div>
 
-@endsection
-
-@section('scripts')
-<script type="text/javascript" src="{{asset('js/auth.js')}}"></script>
 @endsection

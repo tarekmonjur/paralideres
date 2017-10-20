@@ -81,13 +81,15 @@ class AuthenticateController extends Controller
      */
     public function logout(Request $request)
     {
+        $request->user()->token()->revoke();
+
         $this->guard()->logout();
 
         $request->session()->flush();
 
         $request->session()->regenerate();
 
-        return redirect('/');
+        return $this->setResponse([], 'success', 'OK', '200', 'Success!', 'Logout Success.');
     }
 
     /**

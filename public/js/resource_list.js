@@ -40,6 +40,17 @@ new Vue({
                 });
         },
 
+        filterResource(){
+            var formData = $('#filterResource').serialize();
+            console.log(formData);
+            axios.get(this.api_url+'resources?'+formData)
+            .then(response => {
+                this.resources = response.data.data;
+                // console.log(response);
+                // console.log(this.resources);
+            });
+        },
+
         givenResourceLike(resource){
             axios.post(this.api_url+'resources/'+resource.id+'/like')
                 .then(response => {

@@ -1,4 +1,4 @@
-<header class="header_area">
+<header class="header_area" @if($auth) id="auth" @endif>
     <nav class="navbar navbar-default">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -19,11 +19,11 @@
                     </form>
                 </div>
                 @if($auth)
-                    <a href="{{url('salir')}}">salir</a>
+                    <a href="#" v-on:click.prevent="logout">salir</a>
                 @else
                     <a href="{{url('/')}}">Registrarse</a>
                 @endif
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </nav>
 </header>

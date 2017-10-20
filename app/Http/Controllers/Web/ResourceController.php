@@ -2,16 +2,23 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Models\Category;
 use App\Models\Resource;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ResourceController extends WebController
 {
 
+    /**
+     * Display all resources
+     * @return $this
+     */
     public function index()
     {
-        return view('public.resource_list');
+        $data['categories'] = Category::orderBy('id','desc')->get();
+        return view('public.resource_list')->with($data);
     }
 
 
@@ -38,4 +45,14 @@ class ResourceController extends WebController
 
        return view('public.resource')->with($data);
    }
+
+
+   public function showCreate(){
+       $data['categories'] = Category::orderBy('id','desc')->get();
+       $data['tags'] = Tag::orderBy('id','desc')->get();
+       return view('public.resource_create')->with($data);
+   }
+
+
+
 }

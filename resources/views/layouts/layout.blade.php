@@ -38,10 +38,9 @@
     @endif
     <!-- =========================
         END HEADER SECTION
-    ============================== --> 
-    <div id="app">
-        @yield('content')
-    </div>
+    ============================== -->
+
+    @yield('content')
 
      <!-- =========================
         START SOCIAL SHARE SECTION

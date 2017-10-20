@@ -9,10 +9,6 @@ new Vue({
         api_url: window.api_url,
         resources: [],
         poll:[],
-
-        formData: null,
-        submitDisable: false,
-        errors:[]
     },
 
     created(){
@@ -109,71 +105,6 @@ new Vue({
 
             });
         },
-
-        signup(form_id,signup){
-            this.formData = $('#'+form_id).serialize();
-            // let formID = document.querySelector('#'+form_id);
-            // let formData = new FormData(formID);
-            // console.log(this.formData, form_id, formData);
-            if(signup){
-                this.$common.loadingShow(0);
-                this.submitDisable = true;
-                this.formData += '&signup=home_signup';
-            }
-
-            axios.post(this.api_url+'users',this.formData).then(response => {
-                this.$common.loadingHide(0);
-                this.errors = [];
-                this.submitDisable = false;
-                if(response.data){
-                    this.$common.showMessage(response.data);
-                    setTimeout(function(){window.location.href = '/ingreser';},500)
-                }
-            }).catch(error => {
-                this.$common.loadingHide(0);
-                this.errors = [];
-                this.submitDisable = true;
-                if(error.response.status == 500 && error.response.data.code == 500){
-                    var error = error.response.data;
-                    this.$common.showMessage(error);
-                }else if(error.response.status == 422){
-                    this.errors = error.response.data.errors;
-                }
-            });
-        },
-
-        login(form_id,login){
-            this.formData = $('#'+form_id).serialize();
-            if(login){
-                this.$common.loadingShow(0);
-                this.submitDisable = true;
-                this.formData += '&login=login';
-            }
-
-            axios.post('/login',this.formData).then(response => {
-                this.$common.loadingHide(0);
-                this.errors = [];
-                this.submitDisable = false;
-                if(response.data){
-                    this.$common.showMessage(response.data);
-                    setTimeout(function(){window.location.href = '/';},1000)
-                }
-            }).catch(error => {
-                this.$common.loadingHide(0);
-                this.errors = [];
-                this.submitDisable = true;
-                if(error.response.status == 500 && error.response.data.code == 500){
-                    var error = error.response.data;
-                    this.$common.showMessage(error);
-                }else if(error.response.status == 422){
-                    this.errors = error.response.data.errors;
-                }
-            });
-        },
-
-
-
-
 
     }
 

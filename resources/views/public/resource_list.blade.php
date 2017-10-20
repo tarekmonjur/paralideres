@@ -1,18 +1,19 @@
 @extends('layouts.layout')
 @section('content')
 
-<section class="service_area recurso_list">
+<section class="service_area recurso_list" id="app">
     <div class="container">
 
         <div class="row">
             <div class="col-md-12">
                 <div class="recurso_filter clearfix">
-                    <h2> Resultado de Busqueda  para:  Test</h2>
-                    <form action="">
-                        <span class="num" v-if="resources.data.length > 0" v-text="resources.total+' Recursos'"></span>
+                    <h2> Resultado de Busqueda  para:  <span></span></h2>
+                    <form id="filterResource" v-on:submit.prevent="filterResource">
+                        <span class="num" v-if="resources.data && resources.data.length > 0" v-text="resources.total+' Recursos'"></span>
+                        <span class="num" v-else> 0 Recursos</span>
                         <span>
                                 POR ORIGEN
-                                <select>
+                                <select name="origin">
                                   <option value="volvo">filter</option>
                                   <option value="saab">Saab</option>
                                   <option value="mercedes">Mer</option>
@@ -21,17 +22,17 @@
                             </span>
                         <span>
                                 POR CATEGORIA
-                                <select>
-                                  <option value="volvo">filter</option>
-                                  <option value="saab">Saab</option>
-                                  <option value="mercedes">Mer</option>
-                                  <option value="audi">Audi</option>
+                                <select name="category_id" v-on:change="filterResource">
+                                  <option value="">..filter..</option>
+                                  @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->label}}</option>
+                                  @endforeach
                                 </select>
                             </span>
                         <span class="recurso_btn">
                                 PALABRA CLAVE
-                                <input type="text" placeholder="Escribe algo aquí...">
-                                <button>FILTRAR</button>
+                                <input type="text" name="search_text" v-on:keyup="filterResource" placeholder="Escribe algo aquí...">
+                                <button v-on:click.prevent="filterResource">FILTRAR</button>
                             </span>
                     </form>
                 </div>
@@ -65,9 +66,8 @@
                 </div>
             </div>
             <div class="col-md-12 clearfix text-center">
-                <div class="service_btn">
+                <div class="service_btn" v-if="resources.data && resources.data.length > 0">
                     <a href="#" v-if="resources.next_page_url" v-on:click.prevent="getNextResources(resources.next_page_url)">ver mus recursus</a>
-                    <a href="#" v-else v-on:click.prevent="getNextResources(resources.prev_page_url)">ver mus recursus</a>
                 </div>
             </div>
         </div>
