@@ -103,7 +103,8 @@ class PollController extends Controller
         return response()->json($poll, 200);
     }
 
-    public function vote(PollVoteRequest $request, $id) {
+    public function vote(PollVoteRequest $request, $id)
+    {
 
         $hasVoted = Auth::user()->pollVote()->where([
             'poll_id' => $id,
@@ -111,7 +112,7 @@ class PollController extends Controller
         ])->first();
 
         if ($hasVoted) {
-            return response()->json('Only one vote per user per poll', 400);
+            return $this->setResponse([], 'warning', 'OK', '200', 'Warning!', 'Only one vote per user per poll');
         }
 
         $pollVote = new PollVote([
@@ -120,12 +121,12 @@ class PollController extends Controller
         ]);
 
         Auth::user()->pollVote()->save($pollVote);
-        return response()->json(200);
+        return $this->setResponse([], 'success', 'OK', '200', 'Vota el éxito', 'Gracias! Tu voto ha sido enviado');
     }
 
     public function result($id) {
-        $poll = Poll::with('options.votes')->findOrFail($id);
-        return response()->json($poll, 200);
+        $poll = Poll::with('options.votes', 'options.votes.user')->findOrFail($id);
+        return $this->setResponse([], 'success', 'OK', '200', 'Vota el éxito', 'Gracias! Tu voto ha sido enviado');
     }
 
 }

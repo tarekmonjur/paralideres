@@ -26,7 +26,7 @@
                                     <img v-else src="{{asset('images/love2.png')}}" alt="">
                                 </a>
                             @else
-                                <a href="{{url('/ingreser')}}"><img src="{{asset('images/love2.png')}}" alt=""></a>
+                                <a href="{{url('/ingreser?redirect=resource&slug='.$resource->slug)}}"><img src="{{asset('images/love2.png')}}" alt=""></a>
                             @endif
                             <a href="#"><img src="{{asset('images/icon-3.png')}}" alt=""></a>
                         </span>

@@ -70,8 +70,18 @@ $(document).ready(function () {
                         if (response.data) {
                             this.$common.showMessage(response.data);
                             localStorage.setItem('access_token', response.data.data.access_token);
+                            alert(window.redirect);
+                            if(window.redirect == 'home'){
+                                var url = this.base_url;
+                            }else if(window.redirect == 'resource'){
+                                var url = this.base_url+'recursos/'+window.slug;
+                            }else if(window.redirect == 'resource_list'){
+                                var url = this.base_url+'recursos';
+                            }else{
+                                url = this.base_url;
+                            }
                             setTimeout(function () {
-                                window.location.href = '/';
+                                window.location.href = url;
                             }, 500)
                         }
                     }).catch(error => {
@@ -92,8 +102,10 @@ $(document).ready(function () {
                     axios.post(window.base_url+'logout')
                         .then(response => {
                             this.$common.showMessage(response.data);
+                            localStorage.removeItem('access_token');
+                            window.axios.defaults.headers.common['Authorization'] = '';
                             setTimeout(function () {
-                                window.location.href = '/';
+                                window.location.href = this.base_url;
                             }, 500)
                         });
                 },

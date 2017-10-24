@@ -60,5 +60,20 @@
     ============================== -->
     <script src="{{ asset('js/app.js') }}"></script>
     @yield('scripts')
+    <?php $messages= ['success','danger','warning']; foreach($messages as $msg){?>
+    @if(session()->has($msg))
+        <script type="text/javascript">
+            new PNotify({
+                title: '{{ucfirst($msg)}} Message',
+                text: '{!! session($msg) !!}',
+                shadow: true,
+                addclass: 'stack_top_right',
+                type: '{{$msg}}',
+                width: '290px',
+                delay: 2000
+            });
+        </script>
+    @endif
+    <?php }?>
 </body>
 </html>

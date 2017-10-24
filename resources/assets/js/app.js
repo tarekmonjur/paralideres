@@ -5,7 +5,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require('./app-bootstrap');
+require('./bootstrap.min');
 require('./pnotify');
 require('./select2');
 require('./loading_overlay.min');
@@ -14,7 +15,7 @@ require('./main');
 
 window.Vue = require('vue');
 
-window.base_url = 'http://paralideres.dev:8000/';
+window.base_url = 'http://mediusware.com/demo/paraliders/public/';
 window.api_url = 'api/v1/';
 
 import Common from './common';

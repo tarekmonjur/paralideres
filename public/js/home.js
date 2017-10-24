@@ -25,6 +25,7 @@ new Vue({
     methods: {
 
         getResources(search=null, value=null){
+            this.$common.loadingShow(0);
             if(search !=null){
                 var action_url = '/'+search+'?search='+value;
             }else{
@@ -33,24 +34,32 @@ new Vue({
             axios.get(this.api_url+'resources'+action_url)
             .then(response => {
                 this.resources = response.data.data;
+                this.$common.loadingHide(0);
                 // console.log(response);
                 // console.log(this.resources);
             });
         },
 
         getNextResources(next_page_url){
+            this.$common.loadingShow(0);
             axios.get(next_page_url)
             .then(response => {
                 this.resources = response.data.data;
+                this.$common.loadingHide(0);
                 // console.log(response);
                 // console.log(this.resources);
             });
+            $('html, body').animate({
+                scrollTop: 0
+            }, 500);
         },
 
         getCategoryResources(slug){
+            this.$common.loadingShow(0);
             axios.get(this.api_url+'categories/'+slug+'/resources')
             .then(response => {
                 this.resources = response.data.data;
+                this.$common.loadingHide(0);
                 // console.log(response);
                 // console.log(this.resources);
             });
@@ -92,17 +101,20 @@ new Vue({
         votePoll(){
             let formID = document.querySelector('#votePoll');
             let formData = new FormData(formID);
-
-            axios.post(this.api_url+'polls/'+this.poll.id+'/vote', {
+            this.$common.loadingShow(0);
+            axios.post(this.base_url+this.api_url+'polls/'+this.poll.id+'/vote', {
                 'option': formData.get('poll_option')
             })
             .then(response => {
-                this.poll = response.data.data;
-                // console.log(response);
-                // console.log(this.poll);
+                this.$common.loadingHide(0);
+                // this.poll = response.data.data;
+                this.$common.showMessage(response.data);
             })
             .catch(error => {
-
+                this.$common.loadingHide(0);
+                if (error.response.status == 500 && error.response.data.code == 500) {
+                    this.$common.showMessage(error);
+                }
             });
         },
 

@@ -176,7 +176,7 @@
 				   (this.options.type === "system" ? this.styles.system :
 				   (this.options.type === "dark" ? this.styles.dark :
 				 	this.options.type === "success" ? this.styles.success : this.styles.notice)))))))))})
-			
+
 			.appendTo(this.elem);
 			if (this.options.cornerclass !== "")
 				this.container.removeClass("ui-corner-all").addClass(this.options.cornerclass);
@@ -187,15 +187,15 @@
 			// Add the appropriate icon.
 			if (this.options.icon !== false) {
 				$("<div />", {"class": "ui-pnotify-icon"})
-				.append($("<span />", {"class": this.options.icon === true ? 
-					(this.options.type === "error" ? this.styles.error_icon : 
-					(this.options.type === "primary" ? this.styles.primary_icon : 
-					(this.options.type === "info" ? this.styles.info_icon : 
-					(this.options.type === "success" ? this.styles.success_icon : 
-					(this.options.type === "warning" ? this.styles.warning_icon : 
-					(this.options.type === "danger" ? this.styles.danger_icon : 
-					(this.options.type === "alert" ? this.styles.alert_icon : 
-					(this.options.type === "system" ? this.styles.system_icon : 
+				.append($("<span />", {"class": this.options.icon === true ?
+					(this.options.type === "error" ? this.styles.error_icon :
+					(this.options.type === "primary" ? this.styles.primary_icon :
+					(this.options.type === "info" ? this.styles.info_icon :
+					(this.options.type === "success" ? this.styles.success_icon :
+					(this.options.type === "warning" ? this.styles.warning_icon :
+					(this.options.type === "danger" ? this.styles.danger_icon :
+					(this.options.type === "alert" ? this.styles.alert_icon :
+					(this.options.type === "system" ? this.styles.system_icon :
 					(this.options.type === "dark" ? this.styles.dark_icon : this.styles.notice_icon))))))))) : this.options.icon}))
 				.prependTo(this.container);
 			}
@@ -310,14 +310,14 @@
 					 (this.options.type === "system" ? this.styles.system :
 					 (this.options.type === "dark" ? this.styles.dark :
 													 this.styles.notice
-												 ) 
+												 )
 											 )
 										 )
 									 )
 								 )
 							 )
 						 )
-					 )										     	
+					 )
 				);
 			if (this.options.icon !== oldOpts.icon || (this.options.icon === true && this.options.type !== oldOpts.type)) {
 				// Remove any old icon.
@@ -335,7 +335,7 @@
 						 (this.options.type === "danger" ? this.styles.danger_icon :
 						 (this.options.type === "alert" ? this.styles.alert_icon :
 						 (this.options.type === "system" ? this.styles.system_icon :
-						 (this.options.type === "dark" ? this.styles.dark_icon : this.styles.notice_icon))))))))) 
+						 (this.options.type === "dark" ? this.styles.dark_icon : this.styles.notice_icon)))))))))
 						 : this.options.icon}))
 					.prependTo(this.container);
 				}

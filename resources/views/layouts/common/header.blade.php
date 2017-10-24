@@ -20,7 +20,7 @@
                     @if($auth)
                     <li><a href="{{url('recursos/crear')}}">crear recurso</a></li>
                     @endif
-                    <li><a href="#">icuestas</a></li>
+                    {{--<li><a href="#">icuestas</a></li>--}}
                 </ul>
             </div><!-- /.navbar-collapse -->
             @if($auth)

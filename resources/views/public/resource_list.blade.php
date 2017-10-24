@@ -46,7 +46,7 @@
                         </h2>
                     </div>
                     <h4><a :href="base_url+'recursos/'+resource_info.slug">@{{ resource_info.title | truncate(30) }}</a></h4>
-                    <p>@{{ resource_info.content | truncate(100) }}</p>
+                    <p>@{{ resource_info.review | truncate(100) }}</p>
                     <div class="author">
                         <h3>
                             <img width="45px" class="img-circle" v-if="resource_info.user.image" :src="base_url+'uploads/'+resource_info.user.image" alt="">
@@ -56,7 +56,7 @@
                     </div>
                     <div class="comment">
                         <span><img :src="base_url+'images/share.png'" alt="">Compartir Recurso</span>
-                        <span style="cursor: pointer" @if($auth) v-on:click.prevent="givenResourceLike(resource_info)" @else onclick="window.location.href='ingreser'" @endif>
+                        <span style="cursor: pointer" @if($auth) v-on:click.prevent="givenResourceLike(resource_info)" @else onclick="window.location.href='ingreser?redirect=resource_list'" @endif>
                             <span v-if="resource_info.likes_count.length > 0" v-text="resource_info.likes_count[0].total"></span>
                             <span v-else>0</span>
                             <img v-if="resource_info.like.length > 0" :src="base_url+'images/love3.png'" alt="">

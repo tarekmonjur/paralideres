@@ -23,21 +23,28 @@ new Vue({
     methods: {
 
         getResources(){
+            this.$common.loadingShow(0);
             axios.get(this.api_url+'resources')
                 .then(response => {
                     this.resources = response.data.data;
+                    this.$common.loadingHide(0);
                     // console.log(response);
                     // console.log(this.resources);
                 });
         },
 
         getNextResources(next_page_url){
+            this.$common.loadingShow(0);
             axios.get(next_page_url)
-                .then(response => {
-                    this.resources = response.data.data;
-                    // console.log(response);
-                    // console.log(this.resources);
-                });
+            .then(response => {
+                this.resources = response.data.data;
+                this.$common.loadingHide(0);
+                // console.log(response);
+                // console.log(this.resources);
+            });
+            $('html, body').animate({
+                scrollTop: 0
+            }, 500);
         },
 
         filterResource(){

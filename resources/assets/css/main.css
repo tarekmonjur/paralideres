@@ -1649,6 +1649,77 @@ a:hover, a:focus {
     }
 }
 
+
+
+/*---------------------------------------
+   SELECT 2
+-----------------------------------------*/
+.selection {
+    width: 100%;
+    padding: 0!important;
+}
+.select2-container--default .select2-selection--multiple {
+    background-color: white;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    cursor: text;
+    width: 100%;
+}
+.select2-container{
+    padding: 0!important;
+}
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    background-color: white;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    cursor: text;
+    height: 43px;
+}
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    background-color: white;
+    border: 1px solid #aaa;
+    border-radius: 0px;
+    cursor: text;
+    height: 43px;
+    padding-top: 0;
+}
+.select2-container--default .select2-selection--multiple {
+    background-color: white;
+    border: 1px solid #aaa;
+    border-radius: 0px;
+    cursor: text;
+    width: 100%;
+    height: 43px;
+    margin-bottom: 20px;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: #999;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 2px;
+    padding: 0;
+    padding-left: 5px;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #e4e4e4;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    cursor: default;
+    float: left;
+    margin-right: 5px;
+    margin-top: 10px;
+    padding: 0 5px;
+}
+.select2-container .select2-search--inline .select2-search__field {
+    box-sizing: border-box;
+    border: none;
+    font-size: 100%;
+    margin-top: 0;
+    padding: 0;
+}
+
+
 /*---------------------------------------
    FORM ERROR
 -----------------------------------------*/
@@ -1669,4 +1740,18 @@ a:hover, a:focus {
 }
 .has-error input::-ms-input-placeholder { /* Internet Explorer 10-11 */
     color: #d71410!important;
+}
+
+span.has-error{
+    float: left!important;
+    padding-left: 20%!important;
+    padding-top: 0!important;
+    margin-top: -33px!important;
+}
+
+.banner_inner span.has-error {
+    float: left!important;
+    padding-left: 0%!important;
+    padding-top: 0!important;
+    margin-top: 1px!important;
 }

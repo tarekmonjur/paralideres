@@ -71,7 +71,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="cat_left">
-                    <h2>Categorias Populares:
+                    <h2><b>Categorias Populares:</b>
                         @foreach($categories as $category)
                             <span style="cursor: pointer" v-on:click.prevent="getCategoryResources('{{$category->slug}}')">{{$category->label}}</span>
                         @endforeach
@@ -82,7 +82,7 @@
                 <div class="cat_right form_hide_m">
                     <h2>
                         <span>Buscador</span>
-                        <input type="search" v-on:keyup.prevent="getResources('search', $event.target.value)" placeholder="Encuentra entre los 14.768 recursos que tenemos">
+                        <input type="search" v-on:keyup.prevent="getResources('search', $event.target.value)" :placeholder="'Encuentra entre los '+resources.total+' recursos que tenemos'">
                     </h2>
                 </div>
             </div>
@@ -96,7 +96,7 @@
 <!-- =========================
     START SERVICE SECTION
 ============================== --> 
-<section class="service_area">
+<section class="service_area form_hide_m">
     <div class="container">
         <div class="row">
             <div class="col-md-4" v-for="(resource_info, index) in resources.data">
@@ -108,7 +108,7 @@
                         </h2>
                     </div>
                     <h4><a :href="base_url+'recursos/'+resource_info.slug">@{{ resource_info.title | truncate(30) }}</a></h4>
-                    <p>@{{ resource_info.content | truncate(100) }}</p>
+                    <p>@{{ resource_info.review | truncate(100) }}</p>
                     <div class="author">
                         <h3>
                             <img width="45px" class="img-circle" v-if="resource_info.user.image" :src="base_url+'uploads/'+resource_info.user.image" alt="">
@@ -137,7 +137,36 @@
 </section>                                  
 <!-- =========================
     END SERVICE SECTION
-============================== --> 
+============================== -->
+
+
+<!-- =========================
+    FOR MOBILE
+============================== -->
+    <section class="service_area form_hide_d">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 no-padding" v-for="(resource_info, index) in resources.data">
+                    <div class="service_inner_m">
+                        <span></span>
+                        <h4><a :href="base_url+'recursos/'+resource_info.slug">@{{ resource_info.title | truncate(30) }}</a></h4>
+                        <h3 v-if="resource_info.user.fullname" v-text="'author: '+resource_info.user.fullname"></h3>
+                        <h3 v-else>author:</h3>
+                        <img :src="base_url+'images/download2.png'" alt="">
+                    </div>
+                </div>
+                <div class="col-md-12 clearfix text-center">
+                    <div class="service_btn">
+                        <a href="#" v-if="resources.next_page_url" v-on:click.prevent="getNextResources(resources.next_page_url)">ver mus recursus</a>
+                        <a href="#" v-else v-on:click.prevent="getNextResources(resources.prev_page_url)">ver mus recursus</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- =========================
+    FOR MOBILE
+============================== -->
 
 
 <!-- =========================
@@ -163,8 +192,9 @@
                         <ul>
                             <li v-for="(poll_option, index) in poll.options">
                                 <div class="step_menu">
-                                    <input type="radio" name="poll_option" :checked="index == 0" :value="poll_option.id" :id="index+1"  />
+                                    <input type="radio" name="poll_option" :disable="pollResult" :checked="index == 0" :value="poll_option.id" :id="index+1"  />
                                     <label :for="index+1"><span v-text="poll_option.option"></span></label>
+                                    <span v-if="pollResult" v-text="'Total Vote '+poll_option.votes.total"></span>
                                 </div>
                             </li>
                         </ul>
@@ -175,7 +205,7 @@
                         @if($auth)
                             <a href="#" v-on:click.prevent="votePoll">ENVIAR MI VOTO</a>
                         @else
-                            <a href="{{url('/ingreser')}}">ENVIAR MI VOTO</a>
+                            <a href="{{url('/ingreser?redirect=home')}}">ENVIAR MI VOTO</a>
                         @endif
                     </div>
                 </div>

@@ -18,14 +18,14 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('layouts.common.footer', function ($view) {
             $categoriesCollections = Category::with(['collections' => function($q){
-                    $q->limit(20);
+//                    $q->limit(20);
                 }])
                 ->whereExists(function ($query) {
                     $query->select('category_id')
                         ->from('collections')
                         ->whereRaw('collections.category_id = categories.id');
                 })
-                ->limit(6)
+//                ->limit(6)
                 ->get();
             $view->with('categoriesCollections', $categoriesCollections);
         });

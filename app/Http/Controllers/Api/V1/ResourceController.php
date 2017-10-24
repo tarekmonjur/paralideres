@@ -101,11 +101,10 @@ class ResourceController extends Controller
      */
     public function store(ResourceCreateRequest $request)
     {
-
         $resource = new Resource(['title' => $request->title, 'slug' => $this->toSlug($request->title) . '_' . uniqid(), 'review' => $request->review, 'category_id' => $request->category_id]);
 
-        Auth::user()->resources()->save($resource);
-        return response()->json($resource);
+        $this->auth->resources()->save($resource);
+        return $this->setResponse([],'success','OK','200','Mensaje de éxito','Recurso creado con éxito.');
     }
 
     /**

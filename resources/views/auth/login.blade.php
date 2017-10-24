@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="login_content" id="auth">
-    <div class="login_inner">
+    <div class="login_inner clearfix">
         <h2>Ingresa a Paralideres.org</h2>
         <form id="login_form" v-on:submit.prevent="login('login_form','login')">
             <div class="input_content clearfix" :class="{'has-error':errors.email}">
@@ -23,4 +23,11 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+    <script>
+        window.redirect = '<?php if(isset($_GET['redirect'])){echo $_GET['redirect'];}else{echo '';}?>';
+        window.slug = '<?php if(isset($_GET['slug'])){echo $_GET['slug'];}else{echo '';}?>';
+    </script>
 @endsection

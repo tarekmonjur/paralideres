@@ -85,7 +85,7 @@ Route::group(['prefix' => 'resources', 'namespace' => 'Api\V1'], function() {
     Route::get('/', 'ResourceController@index');
 
     // Create Resource
-    Route::post('/', 'ResourceController@create');
+    Route::post('/', 'ResourceController@store');
 
     // Search Resource
     Route::get('/search', 'ResourceController@search');
