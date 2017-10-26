@@ -15,7 +15,7 @@
                 <input type="password" name="password" v-on:keyup="login('login_form','')" placeholder="CONTRASEÑA">
                 <span v-if="errors.password" class="has-error" v-text="errors.password[0]"></span>
             </div>
-            <p>Olvide mi contrasena</p>
+            <p><a href="{{url('/password-reset')}}">Olvide mi contrasena</a></p>
             <button type="submit" :disabled="submitDisable">Ingresar</button>
             <span>No tengo cuenta en Paralideres.org, <a href="{{url('/')}}">Registrarme</a></span>
 

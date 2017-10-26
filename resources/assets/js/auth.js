@@ -70,7 +70,7 @@ $(document).ready(function () {
                         if (response.data) {
                             this.$common.showMessage(response.data);
                             localStorage.setItem('access_token', response.data.data.access_token);
-                            alert(window.redirect);
+                            // alert(window.redirect);
                             if(window.redirect == 'home'){
                                 var url = this.base_url;
                             }else if(window.redirect == 'resource'){
@@ -130,7 +130,7 @@ $(document).ready(function () {
                             this.submitDisable = true;
                             setTimeout(function () {
                                 window.location.href = '/login';
-                            }, 3000)
+                            }, 1000)
                         }
                     }).catch(error => {
                         this.$common.loadingHide(0);
@@ -162,7 +162,7 @@ $(document).ready(function () {
                             this.submitDisable = true;
                             setTimeout(function () {
                                 window.location.href = '/dashboard';
-                            }, 2000)
+                            }, 1000)
                         }
                     }).catch(error => {
                         this.$common.loadingHide(0);

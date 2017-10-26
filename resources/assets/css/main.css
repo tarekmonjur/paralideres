@@ -1649,6 +1649,137 @@ a:hover, a:focus {
     }
 }
 
+/*new css*/
+
+.author_head span .dropdown {
+    position: relative;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.author_head span .dropdown button{
+    margin-left: 5px;
+    background: #ececec;
+    display: inline-block;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding: 0;
+}
+.author_head span .dropdown button:focus{
+    outline: 0;
+    box-shadow: none;
+}
+.author_head span .dropdown-menu li a {
+    border-bottom: 1px solid #ddd;
+}
+.author_head span .dropdown-menu li:last-child a {
+    border-bottom: 0px solid #ddd;
+}
+.author_head span .dropdown a {
+    margin-left: 5px;
+    background: transparent;
+    display: inline-block;
+    border-radius: 0;
+    width: 100%;
+    height: auto;
+    text-align: left;
+
+    padding: 4px 10px;
+}
+
+
+.comment span .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.comment span .dropdown button{
+    background: #ececec;
+    display: inline-block;
+    text-align: center;
+    padding: 0;
+    height: 22px;
+}
+.comment span .dropdown button:focus{
+    outline: 0;
+    box-shadow: none;
+}
+.comment span .dropdown-menu li a {
+    border-bottom: 1px solid #ddd;
+}
+.comment span .dropdown-menu li:last-child a {
+    border-bottom: 0px solid #ddd;
+}
+.comment span .dropdown a {
+    margin-left: 5px;
+    background: transparent;
+    display: inline-block;
+    border-radius: 0;
+    width: 100%;
+    height: auto;
+    text-align: left;
+    padding: 4px 10px;
+}
+.home_login a {
+    padding: 5px 28px;
+}
+.home_login {
+    top: -1px;
+}
+.author_contect_inner h2 {
+    font-family: "Times New Roman", Georgia, Serif;
+}
+.author_contect_inner h3 {
+    font-family: "Times New Roman", Georgia, Serif;
+}
+.author_contect_inner p {
+    font-family: "Times New Roman", Georgia, Serif;
+    text-align: left;
+}
+.blog_content_inner {
+    padding-left: 48px;
+}
+.option_head h2 {
+    font-weight: 100;
+}
+.nav li:last-child a {
+    position: relative;
+    display: block;
+    padding: 9px 40px;
+    font-size: 20px;
+    color: #fff!important;
+    background: #54b1c4;
+    border: 1px solid #54b1c4;
+    border-radius: 5px;
+}
+.nav li:last-child a:hover {
+    background: #2e353e;
+    border: 1px solid #54b1c4;
+    color: #54b1c4;
+    border-radius: 5px;
+}
+@media (max-width: 767px){
+    .author_head_m p a{
+        color: #54b1c4;
+    }
+}
+
+.love_red_bg{
+    background: #cb614c!important;
+}
+
+.filter > a {
+padding: 9px 23px;
+}
+
+.filter_content select {
+    height: 39px;
+}
+.filter_content form input, .filter_content form input:hover, .filter_content form input:focus {
+    height: 39px;
+}
 
 
 /*---------------------------------------

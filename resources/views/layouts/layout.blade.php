@@ -59,6 +59,7 @@
         END FOOTER SECTION
     ============================== -->
     <script src="{{ asset('js/app.js') }}"></script>
+
     @yield('scripts')
     <?php $messages= ['success','danger','warning']; foreach($messages as $msg){?>
     @if(session()->has($msg))

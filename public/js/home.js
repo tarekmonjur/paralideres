@@ -2,6 +2,7 @@
  * Created by Tarek on 10/16/2017.
  */
 
+$(document).ready(function(){
 new Vue({
     el: '#app',
     data:{
@@ -119,5 +120,7 @@ new Vue({
         },
 
     }
+
+});
 
 });

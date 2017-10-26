@@ -19,7 +19,7 @@
                     </form>
                 </div>
                 @if($auth)
-                    <a href="#" v-on:click.prevent="logout">salir</a>
+                    <a href="#"  v-on:click.prevent="logout">SALIR</a>
                 @else
                     <a href="{{url('/')}}">Registrarse</a>
                 @endif

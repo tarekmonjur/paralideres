@@ -11,6 +11,7 @@ require('./pnotify');
 require('./select2');
 require('./loading_overlay.min');
 require('./owl.carousel');
+require('./jquery.matchHeight');
 require('./main');
 
 window.Vue = require('vue');
@@ -30,3 +31,7 @@ require('./auth');
  */
 
 // Vue.component('example', require('./components/Example.vue'));
+
+// var SocialSharing = require('vue-social-sharing');
+//
+// Vue.use(SocialSharing);

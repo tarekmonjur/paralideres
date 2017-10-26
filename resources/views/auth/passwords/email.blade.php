@@ -1,47 +1,27 @@
-@extends('layouts.app')
-
+@extends('layouts.layout')
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+    <div class="login_content" id="auth">
+        <div class="login_inner clearfix">
+            <h2>Olvide mi contrasena a Paralideres.org</h2>
+            <form id="login_form" v-on:submit.prevent="passwordResetEmail('login_form','login')">
+                <div class="input_content clearfix" :class="{'has-error':errors.email}">
+                    <label>USUARIO</label>
+                    <input type="text" name="email" v-on:keyup="passwordResetEmail('login_form','')" placeholder="USUARIO">
+                    <span v-if="errors.email" class="has-error" v-text="errors.email[0]"></span>
+                    <span v-if="errors.emailFailed" class="has-error" v-text="errors.emailFailed"></span>
                 </div>
-            </div>
+                <button type="submit">enviar enlace de restablecimiento de contraseña</button>
+            </form>
         </div>
     </div>
-</div>
+
 @endsection
+
+@section('scripts')
+    <script>
+        window.redirect = '<?php if(isset($_GET['redirect'])){echo $_GET['redirect'];}else{echo '';}?>';
+        window.slug = '<?php if(isset($_GET['slug'])){echo $_GET['slug'];}else{echo '';}?>';
+    </script>
+@endsection
+

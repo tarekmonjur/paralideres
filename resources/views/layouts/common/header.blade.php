@@ -19,13 +19,15 @@
                     <li><a href="{{url('recursos')}}">recursos</a></li>
                     @if($auth)
                     <li><a href="{{url('recursos/crear')}}">crear recurso</a></li>
+                    @else
+                        <li></li>
                     @endif
                     {{--<li><a href="#">icuestas</a></li>--}}
                 </ul>
             </div><!-- /.navbar-collapse -->
             @if($auth)
             <div class="home_login" id="auth">
-                <a href="#" v-on:click.prevent="logout">salir</a>
+                <a href="#" v-on:click.prevent="logout">SALIR</a>
             </div>
             @else
             <div class="home_login">

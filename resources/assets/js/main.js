@@ -52,4 +52,12 @@ $(document).ready(function(){
             }
         }
     });
+
+    $('.match_item').matchHeight({
+        byRow: true,
+        property: 'height',
+        target: null,
+        remove: false
+    });
+
 });

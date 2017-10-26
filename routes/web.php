@@ -33,6 +33,12 @@ Route::prefix('/')->namespace('Auth')->group(function(){
 
     // show web login form
     Route::get('ingreser', 'LoginController@showLoginForm')->name('login');
+
+    //Password Reset Routes...
+    Route::get('password-reset', 'ForgotPasswordController@showLinkRequestForm');
+    Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail');
+    Route::get('password/reset/{token?}', 'ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('password/reset', 'ResetPasswordController@reset');
 });
 
 Route::prefix('/')->namespace('Api\V1')->group(function(){

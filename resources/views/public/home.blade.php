@@ -98,8 +98,8 @@
 ============================== --> 
 <section class="service_area form_hide_m">
     <div class="container">
-        <div class="row">
-            <div class="col-md-4" v-for="(resource_info, index) in resources.data">
+        <div :class="{'row': (index+1)%3==0}" v-for="(resource_info, index) in resources.data">
+            <div class="col-md-4">
                 <div class="service_inner">
                     <div class="service_head">
                         <h2>
@@ -107,8 +107,8 @@
                             <span v-if="resource_info.category" v-text="resource_info.category.label"></span>
                         </h2>
                     </div>
-                    <h4><a :href="base_url+'recursos/'+resource_info.slug">@{{ resource_info.title | truncate(30) }}</a></h4>
-                    <p>@{{ resource_info.review | truncate(100) }}</p>
+                    <h4><a :href="base_url+'recursos/'+resource_info.slug">@{{ resource_info.title}}</a></h4>
+                    <p>@{{ resource_info.review | truncate(200) }}</p>
                     <div class="author">
                         <h3>
                             <img width="45px" class="img-circle" v-if="resource_info.user.image" :src="base_url+'uploads/'+resource_info.user.image" alt="">
@@ -126,13 +126,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 clearfix text-center">
-                <div class="service_btn">
-                    <a href="#" v-if="resources.next_page_url" v-on:click.prevent="getNextResources(resources.next_page_url)">ver mus recursus</a>
-                    <a href="#" v-else v-on:click.prevent="getNextResources(resources.prev_page_url)">ver mus recursus</a>
-                </div>
+        </div>
+        <div class="col-md-12 clearfix text-center">
+            <div class="service_btn">
+                <a href="#" v-if="resources.next_page_url" v-on:click.prevent="getNextResources(resources.next_page_url)">ver mus recursus</a>
+                <a href="#" v-else v-on:click.prevent="getNextResources(resources.prev_page_url)">ver mus recursus</a>
             </div>
         </div>
+
     </div>
 </section>                                  
 <!-- =========================
@@ -149,7 +150,7 @@
                 <div class="col-md-4 no-padding" v-for="(resource_info, index) in resources.data">
                     <div class="service_inner_m">
                         <span></span>
-                        <h4><a :href="base_url+'recursos/'+resource_info.slug">@{{ resource_info.title | truncate(30) }}</a></h4>
+                        <h4><a :href="base_url+'recursos/'+resource_info.slug">@{{ resource_info.title}}</a></h4>
                         <h3 v-if="resource_info.user.fullname" v-text="'author: '+resource_info.user.fullname"></h3>
                         <h3 v-else>author:</h3>
                         <img :src="base_url+'images/download2.png'" alt="">
@@ -192,9 +193,9 @@
                         <ul>
                             <li v-for="(poll_option, index) in poll.options">
                                 <div class="step_menu">
-                                    <input type="radio" name="poll_option" :disable="pollResult" :checked="index == 0" :value="poll_option.id" :id="index+1"  />
+                                    <input type="radio" name="poll_option" :checked="index == 0" :value="poll_option.id" :id="index+1"  />
                                     <label :for="index+1"><span v-text="poll_option.option"></span></label>
-                                    <span v-if="pollResult" v-text="'Total Vote '+poll_option.votes.total"></span>
+                                    {{--<span v-if="pollResult" v-text="'Total Vote '+poll_option.votes.total"></span>--}}
                                 </div>
                             </li>
                         </ul>
