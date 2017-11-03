@@ -24,7 +24,7 @@ new Vue({
 
         getResources(){
             this.$common.loadingShow(0);
-            axios.get(this.api_url+'resources')
+            axios.get(this.api_url+'resources?'+search_text)
                 .then(response => {
                     this.resources = response.data.data;
                     this.$common.loadingHide(0);

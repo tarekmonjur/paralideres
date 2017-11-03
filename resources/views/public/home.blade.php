@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="col-sm-3">
-                                <button type="submit" :disabled="submitDisable" class="btn btn-dm form_hide_m">REGESTRARME</button>
+                                <button type="submit" :disabled="submitDisable" class="btn btn-dm form_hide_m">REGISTRARME</button>
                             </div>
                             <button type="submit" class="btn btn-dm m_submit"><img src="{{asset('images/submit-arrow.png')}}" alt=""></button>
                         </form>
@@ -173,7 +173,7 @@
 <!-- =========================
     START OPTION SECTION
 ============================== --> 
-<section class="option_area">
+<section class="option_area" v-if="poll">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -195,7 +195,11 @@
                                 <div class="step_menu">
                                     <input type="radio" name="poll_option" :checked="index == 0" :value="poll_option.id" :id="index+1"  />
                                     <label :for="index+1"><span v-text="poll_option.option"></span></label>
-                                    {{--<span v-if="pollResult" v-text="'Total Vote '+poll_option.votes.total"></span>--}}
+                                    <br>
+                                    <div v-if="pollResult">
+                                        <label v-if="poll_option.votes">Total Vote : <span v-text="poll_option.votes.total"></span></label>
+                                        <label v-else>Total Vote : 0</label>
+                                    </div>
                                 </div>
                             </li>
                         </ul>

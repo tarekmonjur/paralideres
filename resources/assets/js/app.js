@@ -16,9 +16,6 @@ require('./main');
 
 window.Vue = require('vue');
 
-window.base_url = 'http://mediusware.com/demo/paraliders/public/';
-window.api_url = 'api/v1/';
-
 import Common from './common';
 Vue.use(Common);
 

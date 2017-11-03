@@ -11250,9 +11250,6 @@ __webpack_require__(40);
 
 window.Vue = __webpack_require__(41);
 
-window.base_url = 'http://mediusware.com/demo/paraliders/public/';
-window.api_url = 'api/v1/';
-
 
 Vue.use(__WEBPACK_IMPORTED_MODULE_0__common__["a" /* default */]);
 

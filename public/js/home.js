@@ -10,6 +10,7 @@ new Vue({
         api_url: window.api_url,
         resources: [],
         poll:[],
+        pollResult:false
     },
 
     created(){
@@ -108,8 +109,10 @@ new Vue({
             })
             .then(response => {
                 this.$common.loadingHide(0);
-                // this.poll = response.data.data;
+                this.pollResult = true;
+                this.poll = response.data.data;
                 this.$common.showMessage(response.data);
+                console.log(this.pollResult, response.data.data);
             })
             .catch(error => {
                 this.$common.loadingHide(0);

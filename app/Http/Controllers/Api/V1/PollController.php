@@ -52,6 +52,12 @@ class PollController extends Controller
             ->whereDate('date_to', '<=', $monthEnd->toDateString())
             ->first();
 
+        if(!$poll){
+            $poll = Poll::with('options')
+                ->orderBy('created_at', 'desc')
+                ->where('active', '=', '1')->first();
+        }
+
         return $this->setResponse($poll, 'success', 'OK', '200', '', '');
     }
 
@@ -112,7 +118,8 @@ class PollController extends Controller
         ])->first();
 
         if ($hasVoted) {
-            return $this->setResponse([], 'warning', 'OK', '200', 'Warning!', 'Only one vote per user per poll');
+            $poll = Poll::with('options.votes', 'options.votes.user')->findOrFail($id);
+            return $this->setResponse($poll, 'warning', 'OK', '200', 'Warning!', 'Only one vote per user per poll');
         }
 
         $pollVote = new PollVote([
@@ -121,12 +128,13 @@ class PollController extends Controller
         ]);
 
         Auth::user()->pollVote()->save($pollVote);
-        return $this->setResponse([], 'success', 'OK', '200', 'Vota el éxito', 'Gracias! Tu voto ha sido enviado');
+        $poll = Poll::with('options.votes', 'options.votes.user')->findOrFail($id);
+        return $this->setResponse($poll, 'success', 'OK', '200', 'Vota el éxito', 'Gracias! Tu voto ha sido enviado');
     }
 
     public function result($id) {
         $poll = Poll::with('options.votes', 'options.votes.user')->findOrFail($id);
-        return $this->setResponse([], 'success', 'OK', '200', 'Vota el éxito', 'Gracias! Tu voto ha sido enviado');
+        return $this->setResponse($poll, 'success', 'OK', '200', 'Vota el éxito', 'Gracias! Tu voto ha sido enviado');
     }
 
 }

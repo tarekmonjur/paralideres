@@ -13,8 +13,8 @@
                         <option value="mercedes">Mer</option>
                         <option value="audi">Audi</option>
                     </select>
-                    <form action="#">
-                        <input type="text" name="googlesearch" placeholder="Buscador de Recursos">
+                    <form action="{{url('/recursos')}}">
+                        <input type="text" name="search_text" placeholder="Buscador de Recursos">
                         <input type="submit" id="searchsubmit" value="Search">
                     </form>
                 </div>

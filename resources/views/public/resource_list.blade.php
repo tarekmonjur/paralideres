@@ -93,7 +93,11 @@
 
 @endsection
 
+
 @section('scripts')
+    <script>
+        var search_text = '<?php $s=(isset($_GET['search_text']))?$_GET['search_text']:''; echo 'search_text='.$s;?>';
+    </script>
     <script type="text/javascript" src="{{asset('js/resource_list.js')}}"></script>
 @endsection
 

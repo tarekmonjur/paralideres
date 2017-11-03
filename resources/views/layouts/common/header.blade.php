@@ -31,7 +31,7 @@
             </div>
             @else
             <div class="home_login">
-                <a href="{{url('ingreser')}}">ingreser</a>
+                <a href="{{url('ingreser')}}">Ingresar</a>
             </div>
             @endif
         </div><!-- /.container-fluid -->

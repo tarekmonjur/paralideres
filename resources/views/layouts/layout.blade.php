@@ -21,6 +21,10 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+        window.base_url = 'http://localhost/paraliders/public/';
+        window.api_url = 'api/v1/';
+    </script>
 </head>
 <body>
     <!--[if lt IE 8]>
