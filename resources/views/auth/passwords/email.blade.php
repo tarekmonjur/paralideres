@@ -2,8 +2,8 @@
 @section('content')
 
     <div class="login_content" id="auth">
+        <h2>Olvide mi contrasena a Paralideres.org</h2>
         <div class="login_inner clearfix">
-            <h2>Olvide mi contrasena a Paralideres.org</h2>
             <form id="login_form" v-on:submit.prevent="passwordResetEmail('login_form','login')">
                 <div class="input_content clearfix" :class="{'has-error':errors.email}">
                     <label>USUARIO</label>

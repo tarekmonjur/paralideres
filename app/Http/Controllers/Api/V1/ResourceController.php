@@ -52,24 +52,35 @@ class ResourceController extends Controller
         $limit = $limit > 0 && $limit < 20 ? $limit : 20;
 
         $user_id = ($this->auth)?$this->auth->id:null;
+        $tag_id = ($request->has('tag_id'))?$request->tag_id:null;
+        $tag_slug = ($request->has('tag_slug'))?$request->tag_slug:null;
         $category_id = ($request->has('category_id'))?$request->category_id:null;
         $search_text = ($request->has('search_text'))?$request->search_text:null;
 
-        $resources = Resource::with(
+        $resources = Resource::select('resources.*')->with(
             ['likesCount', 'category', 'user',
                 'like' => function($q)use($user_id){
                     $q->where('user_id', $user_id);
                 }
             ]);
+        if(!empty($tag_id) || !empty($tag_slug)){
+            $resources->join('resource_tag', 'resource_tag.resource_id', '=', 'resources.id')
+                ->join('tags', 'tags.id', '=', 'resource_tag.tag_id')
+                ->where(function($q)use($tag_id,$tag_slug){
+                    $q->where('tags.id', $tag_id)->orWhere('tags.slug', $tag_slug);
+                });
+        }
         if(!empty($category_id)){
-            $resources->where('category_id', $category_id);
+            $resources->where('resources.category_id', $category_id);
         }
         if(!empty($search_text)){
-            $resources->where('title', 'like', '%'.$search_text.'%');
+            $resources->where('resources.title', 'like', '%'.$search_text.'%');
         }
-        $resources = $resources->orderBy('created_at', 'desc')
+        $resources = $resources->orderBy('resources.created_at', 'desc')
             ->Paginate($limit);
 
+        $resources->appends('tag_id', $tag_id);
+        $resources->appends('tag_slug', $tag_slug);
         $resources->appends('category_id', $category_id);
         $resources->appends('search_text', $search_text);
 

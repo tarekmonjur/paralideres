@@ -5,6 +5,7 @@ $(document).ready(function(){
 new Vue({
     el: '#app',
     data:{
+        asset: window.asset,
         base_url: window.base_url,
         api_url: window.api_url,
         resources: [],
@@ -24,7 +25,7 @@ new Vue({
 
         getResources(){
             this.$common.loadingShow(0);
-            axios.get(this.api_url+'resources?'+search_text)
+            axios.get(this.api_url+'resources?'+search_text+tag_slug)
                 .then(response => {
                     this.resources = response.data.data;
                     this.$common.loadingHide(0);

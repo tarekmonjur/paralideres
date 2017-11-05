@@ -1,77 +1,38 @@
-@extends('layouts.app')
-
+@extends('layouts.layout')
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+    <div class="login_content" id="auth">
+        <h2>Registrarme a Paralideres.org</h2>
+        <div class="login_inner clearfix">
+            <form id="signup_form" v-on:submit.prevent="signup('signup_form','signup')">
+                <div class="input_content clearfix" :class="{'has-error':errors.email}">
+                    <label>USUARIO</label>
+                    <input type="text" name="email" v-on:keyup="signup('signup_form','')" placeholder="Ingresa tu email">
+                    <span v-if="errors.email" class="has-error" v-text="errors.email[0]"></span>
                 </div>
-            </div>
+                <div class="input_content" :class="{'has-error':errors.password}">
+                    <label>CONTRASEÑA</label>
+                    <input type="password" name="password" v-on:keyup="signup('signup_form','')" placeholder="Ingresa una clave">
+                    <span v-if="errors.password" class="has-error" v-text="errors.password[0]"></span>
+                </div>
+                <div class="input_content" :class="{'has-error':errors.password_confirmation}">
+                    <label>CONTRASEÑA</label>
+                    <input type="password" name="password_confirmation" v-on:keyup="signup('signup_form','')" placeholder="Confirma tu clave">
+                    <span v-if="errors.password_confirmation" class="has-error" v-text="errors.password_confirmation[0]"></span>
+                </div>
+                <p><a href="{{url('/password-reset')}}">Olvide mi contrasena</a></p>
+                <button type="submit" :disabled="submitDisable">Registrarme</button>
+                <span>Tengo una cuenta en Paralideres.org, <a href="{{url('/ingreser')}}">Ingresar</a></span>
+
+            </form>
         </div>
     </div>
-</div>
+
+@endsection
+
+@section('scripts')
+    <script>
+        window.redirect = '<?php if(isset($_GET['redirect'])){echo $_GET['redirect'];}else{echo '';}?>';
+        window.slug = '<?php if(isset($_GET['slug'])){echo $_GET['slug'];}else{echo '';}?>';
+    </script>
 @endsection

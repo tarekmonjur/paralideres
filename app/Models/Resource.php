@@ -75,4 +75,9 @@ class Resource extends Model
     {
         return $this->belongsToMany('App\Models\Tag')->withTimestamps();
     }
+
+    public function downloads()
+    {
+        return $this->hasMany('App\Models\ResourceDownload');
+    }
 }

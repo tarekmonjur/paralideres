@@ -7,13 +7,14 @@
             </div>
             <div class="filter">
                 <div class="filter_content">
-                    <select>
-                        <option value="volvo">filter</option>
-                        <option value="saab">Saab</option>
-                        <option value="mercedes">Mer</option>
-                        <option value="audi">Audi</option>
-                    </select>
                     <form action="{{url('/recursos')}}">
+                        <select name="tag">
+                            <option value="">...filter...</option>
+                            @foreach($tags as $tag)
+                            <option value="{{$tag->slug}}">{{$tag->label}}</option>
+                            @endforeach
+                        </select>
+
                         <input type="text" name="search_text" placeholder="Buscador de Recursos">
                         <input type="submit" id="searchsubmit" value="Search">
                     </form>
@@ -21,7 +22,7 @@
                 @if($auth)
                     <a href="#"  v-on:click.prevent="logout">SALIR</a>
                 @else
-                    <a href="{{url('/')}}">Registrarse</a>
+                    <a href="{{url('/registrarme')}}">Registrarme</a>
                 @endif
             </div>
         </div>

@@ -19,6 +19,7 @@ Route::prefix('/')->namespace('Web')->group(function(){
 
     // resource list
     Route::get('/recursos', 'ResourceController@index');
+    Route::get('/recursos/{slug}/download', 'ResourceController@download');
 
     // show resource create form
     Route::get('/recursos/crear', 'ResourceController@showCreate')->middleware('auth');
@@ -33,6 +34,9 @@ Route::prefix('/')->namespace('Auth')->group(function(){
 
     // show web login form
     Route::get('ingreser', 'LoginController@showLoginForm')->name('login');
+
+    // show web registration form
+    Route::get('registrarme', 'LoginController@showRegistrationForm');
 
     //Password Reset Routes...
     Route::get('password-reset', 'ForgotPasswordController@showLinkRequestForm');

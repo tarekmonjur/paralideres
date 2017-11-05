@@ -22,7 +22,8 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script>
-        window.base_url = 'http://localhost/paraliders/public/';
+        window.asset = 'http://localhost/paraliders/public/';
+        window.base_url = 'http://localhost/paraliders/';
         window.api_url = 'api/v1/';
     </script>
 </head>

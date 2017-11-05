@@ -5,6 +5,7 @@
 new Vue({
     el: '#app',
     data:{
+        asset: window.asset,
         base_url: window.base_url,
         api_url: window.api_url,
         userLike: userLike,

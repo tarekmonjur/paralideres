@@ -2,6 +2,8 @@
 @section('content')
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-559b5a0c386679ae" async="async"></script>
 
+<?php $tag_slug=(isset($_GET['tag']))?$_GET['tag']:'';?>
+
 <section class="service_area recurso_list" id="app">
     <div class="container">
 
@@ -14,11 +16,11 @@
                         <span class="num" v-else> 0 Recursos</span>
                         <span>
                                 POR ORIGEN
-                                <select name="origin">
-                                  <option value="volvo">filter</option>
-                                  <option value="saab">Saab</option>
-                                  <option value="mercedes">Mer</option>
-                                  <option value="audi">Audi</option>
+                                <select name="tag_id" v-on:change="filterResource">
+                                  <option value="">...filter...</option>
+                                  @foreach($tags as $tag)
+                                        <option value="{{$tag->id}}" @if($tag_slug == $tag->slug) selected @endif>{{$tag->label}}</option>
+                                  @endforeach
                                 </select>
                             </span>
                         <span>
@@ -45,7 +47,7 @@
                 <div class="service_inner">
                     <div class="service_head">
                         <h2>
-                            <img :src="base_url+'images/icon-1.jpg'" alt="">
+                            <img :src="asset+'images/icon-1.jpg'" alt="">
                             <span v-if="resource_info.category" v-text="resource_info.category.label"></span>
                         </h2>
                     </div>
@@ -53,8 +55,8 @@
                     <p>@{{ resource_info.review | truncate(200) }}</p>
                     <div class="author">
                         <h3>
-                            <img width="45px" class="img-circle" v-if="resource_info.user.image" :src="base_url+'uploads/'+resource_info.user.image" alt="">
-                            <img width="45px" class="img-circle" v-else :src="base_url+'images/user.png'" alt="">
+                            <img width="45px" class="img-circle" v-if="resource_info.user.image" :src="asset+'uploads/'+resource_info.user.image" alt="">
+                            <img width="45px" class="img-circle" v-else :src="asset+'images/user.png'" alt="">
                             author: <span v-text="resource_info.user.fullname"></span>
                         </h3>
                     </div>
@@ -62,7 +64,7 @@
                         <span>
                             <div class="dropdown">
                               <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-                                  <img :src="base_url+'images/share.png'" alt="">
+                                  <img :src="asset+'images/share.png'" alt="">
                               </button>
                               <ul class="dropdown-menu addthis_toolbox">
                                 <li><a  class="addthis_button_email" style="margin-left: 0px">Goolge</a></li>
@@ -75,8 +77,8 @@
                         <span style="cursor: pointer" @if($auth) v-on:click.prevent="givenResourceLike(resource_info)" @else onclick="window.location.href='ingreser?redirect=resource_list'" @endif>
                             <span v-if="resource_info.likes_count.length > 0" v-text="resource_info.likes_count[0].total"></span>
                             <span v-else>0</span>
-                            <img v-if="resource_info.like.length > 0" :src="base_url+'images/love3.png'" alt="">
-                            <img v-else :src="base_url+'images/love.jpg'" alt="">
+                            <img v-if="resource_info.like.length > 0" :src="asset+'images/love3.png'" alt="">
+                            <img v-else :src="asset+'images/love.jpg'" alt="">
                         </span>
                     </div>
                 </div>
@@ -97,6 +99,7 @@
 @section('scripts')
     <script>
         var search_text = '<?php $s=(isset($_GET['search_text']))?$_GET['search_text']:''; echo 'search_text='.$s;?>';
+        var tag_slug = '<?php echo '&tag_slug='.$tag_slug;?>';
     </script>
     <script type="text/javascript" src="{{asset('js/resource_list.js')}}"></script>
 @endsection

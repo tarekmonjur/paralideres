@@ -46,11 +46,11 @@
                         @if($resource->attachment)
                         <h3>
                             @if($auth)
-                                <span><a href="#">Descargar Recurso</a></span>
+                                <span><a href="{{url('recursos/'.$resource->slug.'/download')}}">Descargar Recurso</a> ( {{$resource->downloads->count()}} )</span>
                             @else
                                 <span>Descargar Recurso</span>
                                 Para descargar este recurso debes estar registrado en nuestro portal
-                                <a href="#">Registrate es fácil!</a>
+                                <a href="{{url('registrarme')}}">Registrate es fácil!</a>
                             @endif
                         </h3>
                         @endif
@@ -60,8 +60,8 @@
                         <div class="author_contect">
                             <div class="author_contect_inner">
                                 <h2>{{$resource->title}}</h2>
-                                <h3></h3>
-                                <p>{!! $resource->content !!}</p>
+                                <iframe src="https://drive.google.com/viewerng/viewer?url={{$resource->attachment}}?pid=explorer&efh=false&a=v&chrome=false&embedded=true" style="width:100%; height:770px">
+                                </iframe>
                             </div>
                         </div>
                         @else
@@ -75,7 +75,7 @@
                     <div class="author_bottom">
                         <h4>Encuentra <span>recursos similares</span>  a este haciendo click en cualquiera de las siguientes <span> etiquetas</span></h4>
                         @foreach($resource->tags as $tag)
-                        <a href="#">{{$tag->label}}</a>
+                        <a href="{{url('recursos?tag='.$tag->slug)}}">{{$tag->label}}</a>
                         @endforeach
                     </div>
                 </div>
@@ -140,8 +140,8 @@
                             <div class="author_contect">
                                 <div class="author_contect_inner">
                                     <h2>{{$resource->title}}</h2>
-                                    <h3></h3>
-                                    <p>{!! $resource->content !!}</p>
+                                    <iframe src="https://drive.google.com/viewerng/viewer?url={{$resource->attachment}}?pid=explorer&efh=false&a=v&chrome=false&embedded=true" style="width:100%; height:770px">
+                                    </iframe>
                                 </div>
                             </div>
                         @else
@@ -156,7 +156,7 @@
                         @if($resource->attachment)
                         <h3>
                             @if($auth)
-                                <span><a href="#">Descargar Recurso</a></span>
+                                <span><a href="{{url('recursos/'.$resource->slug.'/download')}}">Descargar Recurso</a> ( {{$resource->downloads->count()}} ) </span>
                             @else
                                 <span>Descargar Recurso</span>
                             @endif
@@ -166,10 +166,10 @@
                     </div>
                     <div class="author_bottom">
                         <h4>Encuentra <span>recursos similares</span>  a este haciendo click en cualquiera de las siguientes <span> etiquetas</span>
-                            @if(!$auth)<a href="#">Registrate es fácil!</a>@endif
+                            @if(!$auth)<a href="{{url('registrarme')}}">Registrate es fácil!</a>@endif
                         </h4>
                         @foreach($resource->tags as $tag)
-                            <a href="#">{{$tag->label}}</a>
+                            <a href="{{url('recursos?tag='.$tag->slug)}}">{{$tag->label}}</a>
                         @endforeach
                     </div>
                 </div>

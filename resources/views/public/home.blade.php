@@ -103,7 +103,7 @@
                 <div class="service_inner">
                     <div class="service_head">
                         <h2>
-                            <img :src="base_url+'images/icon-1.jpg'" alt="">
+                            <img :src="asset+'images/icon-1.jpg'" alt="">
                             <span v-if="resource_info.category" v-text="resource_info.category.label"></span>
                         </h2>
                     </div>
@@ -111,17 +111,18 @@
                     <p>@{{ resource_info.review | truncate(200) }}</p>
                     <div class="author">
                         <h3>
-                            <img width="45px" class="img-circle" v-if="resource_info.user.image" :src="base_url+'uploads/'+resource_info.user.image" alt="">
-                            <img width="45px" class="img-circle" v-else :src="base_url+'images/user.png'" alt="">
+                            <img width="45px" class="img-circle" v-if="resource_info.user.image" :src="asset+'uploads/'+resource_info.user.image" alt="">
+                            <img width="45px" class="img-circle" v-else :src="asset+'images/user.png'" alt="">
                             author: <span v-text="resource_info.user.fullname"></span>
                         </h3>
                     </div>
                     <div class="comment">
-                        <span v-on:click.prevent="resourceDownload(resource_info)"><img :src="base_url+'images/download.jpg'" alt="">ver/yo descargar discurso</span>
-                        <span @if($auth) v-on:click.prevent="givenResourceLike(resource_info)" @else onclick="window.location.href='ingreser'" @endif>
+                        <span v-on:click.prevent="resourceDownload(resource_info)"><img :src="asset+'images/download.jpg'" alt="">ver/yo descargar discurso</span>
+                        <span style="cursor: pointer" @if($auth) v-on:click.prevent="givenResourceLike(resource_info)" @else onclick="window.location.href='ingreser'" @endif>
                             <span v-if="resource_info.likes_count.length > 0" v-text="resource_info.likes_count[0].total"></span>
                             <span v-else>0</span>
-                            <img :src="base_url+'images/love.jpg'" alt="">
+                            <img v-if="resource_info.like.length > 0" :src="asset+'images/love3.png'" alt="">
+                            <img v-else :src="asset+'images/love.jpg'" alt="">
                         </span>
                     </div>
                 </div>
@@ -135,7 +136,7 @@
         </div>
 
     </div>
-</section>                                  
+</section>
 <!-- =========================
     END SERVICE SECTION
 ============================== -->
@@ -153,7 +154,7 @@
                         <h4><a :href="base_url+'recursos/'+resource_info.slug">@{{ resource_info.title}}</a></h4>
                         <h3 v-if="resource_info.user.fullname" v-text="'author: '+resource_info.user.fullname"></h3>
                         <h3 v-else>author:</h3>
-                        <img :src="base_url+'images/download2.png'" alt="">
+                        <img :src="asset+'images/download2.png'" alt="">
                     </div>
                 </div>
                 <div class="col-md-12 clearfix text-center">

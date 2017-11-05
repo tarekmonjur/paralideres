@@ -6,6 +6,7 @@ $(document).ready(function(){
 new Vue({
     el: '#app',
     data:{
+        asset: window.asset,
         base_url: window.base_url,
         api_url: window.api_url,
         resources: [],
@@ -80,13 +81,14 @@ new Vue({
                     }else{
                         resource.likes_count = [{'resource_id': resource.id,'total':1}];
                     }
-
+                    resource.like = [{'resource_id': resource.id,'user_id':null}];
                 }else if(response.data.status == 'unlike'){
                     if(resource.likes_count.length > 0){
                         resource.likes_count[0].total -=1;
                     }else{
                         resource.likes_count = [{'resource_id': resource.id,'total':0}];
                     }
+                    resource.like = [];
                 }
             });
         },
