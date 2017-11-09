@@ -20,9 +20,12 @@ class Category extends Model
         return $this->hasMany('App\Models\Collection');
     }
 
-    public function resources()
+    public function resources($user_id = null)
     {
-        return $this->hasMany('App\Models\Resource')->with('likesCount', 'category', 'user');
+        return $this->hasMany('App\Models\Resource')->with(['likesCount', 'category', 'user', 'like' => function($q)use($user_id){
+            if(!empty($user_id) && $user_id !=null)
+            $q->where('user_id', $user_id);
+        }]);
     }
 
     /**

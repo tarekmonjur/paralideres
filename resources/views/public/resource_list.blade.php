@@ -47,7 +47,8 @@
                 <div class="service_inner">
                     <div class="service_head">
                         <h2>
-                            <img :src="asset+'images/icon-1.jpg'" alt="">
+                            <img v-if="resource_info.category && (resource_info.category.id == 9 || resource_info.category.id == 11 || resource_info.category.id == 12)" :src="asset+'images/icon/cat-icon-12.png'" alt="">
+                            <img v-else-if="resource_info.category" :src="asset+'images/icon/cat-icon-'+resource_info.category.id+'.png'" alt="">
                             <span v-if="resource_info.category" v-text="resource_info.category.label"></span>
                         </h2>
                     </div>

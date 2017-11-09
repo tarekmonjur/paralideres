@@ -18,7 +18,14 @@
                             @else
                                 <img class="img-circle" src="{{asset('images/user.png')}}" alt="" width="50px">
                             @endif
-                            <img src="{{asset('images/icon-14.jpg')}}" alt="">{{$resource->title}}
+
+                            @if($resource->category->id == 9 || $resource->category->id == 11 || $resource->category->id ==12)
+                                <img src="{{asset('images/icon/cat-icon-12.png')}}" alt="">
+                            @else
+                                <img src="{{asset('images/icon/cat-icon-'.$resource->category->id.'.png')}}" alt="">
+                            @endif
+
+                            {{$resource->title}}
                         </span>
                         <span>
                             <div class="dropdown">
@@ -48,7 +55,7 @@
                             @if($auth)
                                 <span><a href="{{url('recursos/'.$resource->slug.'/download')}}">Descargar Recurso</a> ( {{$resource->downloads->count()}} )</span>
                             @else
-                                <span>Descargar Recurso</span>
+                                <span>Descargar Recurso ( {{$resource->downloads->count()}} )</span>
                                 Para descargar este recurso debes estar registrado en nuestro portal
                                 <a href="{{url('registrarme')}}">Registrate es fácil!</a>
                             @endif
@@ -60,7 +67,7 @@
                         <div class="author_contect">
                             <div class="author_contect_inner">
                                 <h2>{{$resource->title}}</h2>
-                                <iframe src="https://drive.google.com/viewerng/viewer?url={{$resource->attachment}}?pid=explorer&efh=false&a=v&chrome=false&embedded=true" style="width:100%; height:770px">
+                                <iframe src="https://drive.google.com/viewerng/viewer?url={{asset('uploads/'.$resource->attachment)}}?pid=explorer&efh=false&a=v&chrome=false&embedded=true" style="width:100%; height:770px">
                                 </iframe>
                             </div>
                         </div>
@@ -108,7 +115,10 @@
                     <div class="author_head_m">
                         <span></span>
                         <h3>{{$resource->title}}</h3>
-                        <p>AUTOR: {{$resource->user->fullname}} / <span>PUBLICADO: @if($resource->user->created_at){{$resource->user->created_at->format('d M Y')}}@endif</span> </p>
+                        <p>
+                            <a data-toggle="tooltip" title="<img src='{{asset('images/author2.jpg')}}' />">AUTOR: {{$resource->user->fullname}} </a> /
+                            <span>PUBLICADO: @if($resource->user->created_at){{$resource->user->created_at->format('d M Y')}}@endif</span>
+                        </p>
                     </div>
                     <div class="author_desc author_desc_m">
                         <p>{{$resource->review}}</p>
@@ -140,7 +150,7 @@
                             <div class="author_contect">
                                 <div class="author_contect_inner">
                                     <h2>{{$resource->title}}</h2>
-                                    <iframe src="https://drive.google.com/viewerng/viewer?url={{$resource->attachment}}?pid=explorer&efh=false&a=v&chrome=false&embedded=true" style="width:100%; height:770px">
+                                    <iframe src="https://drive.google.com/viewerng/viewer?url={{asset('uploads/'.$resource->attachment)}}?pid=explorer&efh=false&a=v&chrome=false&embedded=true" style="width:100%; height:770px">
                                     </iframe>
                                 </div>
                             </div>
@@ -158,7 +168,7 @@
                             @if($auth)
                                 <span><a href="{{url('recursos/'.$resource->slug.'/download')}}">Descargar Recurso</a> ( {{$resource->downloads->count()}} ) </span>
                             @else
-                                <span>Descargar Recurso</span>
+                                <span>Descargar Recurso ( {{$resource->downloads->count()}} )</span>
                             @endif
                         </h3>
                         @endif
@@ -207,7 +217,11 @@
                             @if($otherResource->user->created_at){{$otherResource->user->created_at->format('d M Y')}}@endif
                         </h3>
                         <p>{{$otherResource->review}}</p>
-                        <img src="{{asset('images/icon-1.jpg')}}" alt="">
+                        @if($otherResource->category->id == 9 || $otherResource->category->id ==11 || $otherResource->category->id ==12)
+                            <img src="{{asset('images/icon/cat-icon-12.png')}}" alt="">
+                        @else
+                            <img src="{{asset('images/icon/cat-icon-'.$otherResource->category->id.'.png')}}" alt="">
+                        @endif
                     </div>
                 </div>
                 @endforeach
@@ -236,7 +250,12 @@
                             <span>PUBLICADO {{$otherResource->created_at->format('d M Y')}}</span>
                             <h3>AUTOR: {{$otherResource->user->fullname}} <br> @if($otherResource->user->created_at){{$otherResource->user->created_at->format('d M Y')}}@endif</h3>
                             <p>{{$otherResource->review}}</p>
-                            <img src="{{asset('images/cursoarrow.jpg')}}" alt="">
+
+                            @if($otherResource->category->id == 9 || $otherResource->category->id ==11 || $otherResource->category->id ==12)
+                                <img src="{{asset('images/icon/cat-icon-12.png')}}" alt="">
+                            @else
+                                <img src="{{asset('images/icon/cat-icon-'.$otherResource->category->id.'.png')}}" alt="">
+                            @endif
                         </div>
                         @endforeach
                     </div>

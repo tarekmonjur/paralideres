@@ -18,7 +18,7 @@
                     <li><a href="{{url('/')}}">inicio</a></li>
                     <li><a href="{{url('recursos')}}">recursos</a></li>
                     @if($auth)
-                    <li><a href="{{url('recursos/crear')}}">crear recurso</a></li>
+                    <li><a href="#" class="open_login">crear recurso</a></li>
                     @else
                         <li></li>
                     @endif

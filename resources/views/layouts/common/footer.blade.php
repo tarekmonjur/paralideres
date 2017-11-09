@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="footer_top_link text-center">
                     <a href="{{url('/recursos')}}">VER RECURSOS</a>
-                    <a href="#">CAPACITACIÓN</a>
+                    <a href="http://blog.paralideres.org">CAPACITACIÓN</a>
                 </div>
             </div>
             @foreach($categoriesCollections as $catColl)
@@ -21,7 +21,7 @@
             @endforeach
         </div>
     </div>
-    <p>ParaLideres.org © 2014 | Términos | Privacidad | Todos los derechos reservados</p>
+    <p class="footer-link">ParaLideres.org © 2014 | <a href="#">Términos</a> | <a href="#">Privacidad</a> | <a href="#">Todos los derechos reservados</a></p>
 </footer>
 
 <!-- =========================
@@ -49,7 +49,7 @@
             @endforeach
         </div>
     </div>
-    <p>ParaLideres.org © 2014 | Términos | Privacidad | <br> Todos los derechos reservados</p>
+    <p>ParaLideres.org © 2014 | <a href="#">Términos</a> | <a href="#">Privacidad</a> | <br> <a href="#">Todos los derechos reservados</a></p>
 </footer>
 <!-- =========================
     FOR MOBILE

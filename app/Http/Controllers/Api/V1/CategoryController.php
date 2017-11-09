@@ -6,6 +6,7 @@ use DB;
 use App\Models\Category;
 use App\Service\CommonService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryCreateRequest;
 
@@ -14,6 +15,8 @@ class CategoryController extends Controller
 {
     use CommonService;
 
+    protected $auth;
+
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => [
@@ -21,6 +24,10 @@ class CategoryController extends Controller
             'show',
             'resources'
         ]]);
+        $this->middleware(function($request, $next){
+            $this->auth = Auth::guard('api')->user();
+            return $next($request);
+        });
     }
 
     /**
@@ -65,9 +72,10 @@ class CategoryController extends Controller
 
     public function resources($param)
     {
+        $user_id = ($this->auth)?$this->auth->id:null;
         $response = Category::where('slug', $param)
           ->firstOrFail()
-          ->resources()
+          ->resources($user_id)
           ->Paginate(15);
         return $this->setResponse($response, 'success', 'OK', '200', '', '');
     }

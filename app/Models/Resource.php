@@ -10,7 +10,7 @@ class Resource extends Model
 
     use SoftDeletes;
 
-    protected $fillable = ['title', 'review', 'slug', 'category_id', 'attachment', 'content'];
+    protected $fillable = ['user_id','title', 'review', 'slug', 'category_id', 'attachment', 'content'];
 
     protected $hidden = ['pivot', 'category_id', 'deleted_at'];
 

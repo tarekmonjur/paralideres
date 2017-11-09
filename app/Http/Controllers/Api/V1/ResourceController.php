@@ -7,6 +7,7 @@ use App\Models\Like;
 use App\Models\Collection;
 use App\Models\Tag;
 
+
 use Storage;
 use DB;
 use App\Service\CommonService;
@@ -105,17 +106,104 @@ class ResourceController extends Controller
         return $this->setResponse($resources,'success','OK','200','','');
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
      * @return Response
      */
-    public function store(ResourceCreateRequest $request)
+    public function store(Request $request)
     {
-        $resource = new Resource(['title' => $request->title, 'slug' => $this->toSlug($request->title) . '_' . uniqid(), 'review' => $request->review, 'category_id' => $request->category_id]);
+        if($request->has('step') && $request->step == 1){
+            $request->validate([
+                'title' => 'required|max:100',
+                'review' => 'required|max:300',
+                'category_id' => 'exists:categories,id',
+            ], [], [
+                'title' => 'TITULO RECURSO',
+                'review' => 'RESEÑA O RESUME',
+                'category_id' => 'CATEGORIA',
+            ]);
+            return $this->setResponse([],'success','OK','200','','');
+        }
+        else if($request->has('step') && $request->step == 2)
+        {
+            $request->validate([
+                'content' => 'required',
+            ], [], ['content' => 'CONTENIDO']);
 
-        $this->auth->resources()->save($resource);
-        return $this->setResponse([],'success','OK','200','Mensaje de éxito','Recurso creado con éxito.');
+            $resource = new Resource([
+                'user_id' =>$this->auth->id,
+                'title' => $request->title,
+                'slug' => $this->toSlug($request->title) . '_' . uniqid(),
+                'review' => $request->review,
+                'category_id' => $request->category_id,
+                'content' =>  $request->content
+            ]);
+
+            $resource->save();
+
+            if($request->has('tag_ids')){
+                if(is_array($request->tag_ids)){
+                    $tag_ids = $request->tag_ids;
+                    $tags = [];
+                    foreach($tag_ids as $tag_id){
+                        $tags[] = [
+                            'resource_id' => $resource->id,
+                            'tag_id' => $tag_id
+                        ];
+                    }
+                    if(count($tags) > 0){
+                        DB::table('resource_tag')->insert($tags);
+                    }
+                }
+            }
+
+            return $this->setResponse([],'success','OK','200','Mensaje de éxito','Recurso creado con éxito.');
+        }
+        else if($request->has('step') && $request->step == 3)
+        {
+            $request->validate([
+                'attach' => 'required|mimes:pdf,doc,docs,ppt,pptx,rtf,txt|max:3000',
+            ], [], ['ARCHIVO' => 'ARCHIVO']);
+
+            $resource = new Resource([
+                'user_id' =>$this->auth->id,
+                'title' => $request->title,
+                'slug' => $this->toSlug($request->title) . '_' . uniqid(),
+                'review' => $request->review,
+                'category_id' => $request->category_id,
+            ]);
+
+            if($request->hasFile('attach')){
+                $file_name = time().'.'.$request->attach->extension();
+                $uploads = public_path('uploads/');
+                $request->attach->move($uploads, $file_name);
+                $resource->attachment = $file_name;
+            }
+
+            $resource->save();
+
+            if($request->has('tag_ids')){
+                if(is_array($request->tag_ids)){
+                    $tag_ids = $request->tag_ids;
+                    $tags = [];
+                    foreach($tag_ids as $tag_id){
+                        $tags[] = [
+                            'resource_id' => $resource->id,
+                            'tag_id' => $tag_id
+                        ];
+                    }
+                    if(count($tags) > 0){
+                        DB::table('resource_tag')->insert($tags);
+                    }
+                }
+            }
+
+            return $this->setResponse([],'success','OK','200','Mensaje de éxito','Recurso creado con éxito.');
+        }
+
+
     }
 
     /**

@@ -73,7 +73,11 @@
                 <div class="cat_left">
                     <h2><b>Categorias Populares:</b>
                         @foreach($categories as $category)
-                            <span style="cursor: pointer" v-on:click.prevent="getCategoryResources('{{$category->slug}}')">{{$category->label}}</span>
+                            @if($category->id == 9 || $category->id ==11 || $category->id ==12)
+                            <span class="cat-9" style="cursor: pointer" v-on:click.prevent="getCategoryResources('{{$category->slug}}')">{{$category->label}}</span>
+                            @else
+                            <span class="cat-{{$category->id}}" style="cursor: pointer" v-on:click.prevent="getCategoryResources('{{$category->slug}}')">{{$category->label}}</span>
+                            @endif
                         @endforeach
                     </h2>
                 </div>
@@ -103,8 +107,9 @@
                 <div class="service_inner">
                     <div class="service_head">
                         <h2>
-                            <img :src="asset+'images/icon-1.jpg'" alt="">
-                            <span v-if="resource_info.category" v-text="resource_info.category.label"></span>
+                            <img v-if="resource_info.category && (resource_info.category.id == 9 || resource_info.category.id == 11 || resource_info.category.id == 12)" :src="asset+'images/icon/cat-icon-12.png'" alt="">
+                            <img v-else-if="resource_info.category" :src="asset+'images/icon/cat-icon-'+resource_info.category.id+'.png'" alt="">
+                            <span v-text="resource_info.category.label"></span>
                         </h2>
                     </div>
                     <h4><a :href="base_url+'recursos/'+resource_info.slug">@{{ resource_info.title}}</a></h4>
@@ -150,7 +155,10 @@
             <div class="row">
                 <div class="col-md-4 no-padding" v-for="(resource_info, index) in resources.data">
                     <div class="service_inner_m">
-                        <span></span>
+                        <span>
+                            <img v-if="resource_info.category && (resource_info.category.id == 9 || resource_info.category.id == 11 || resource_info.category.id == 12)" :src="asset+'images/icon/cat-icon-12.png'" alt="">
+                            <img v-else-if="resource_info.category" :src="asset+'images/icon/cat-icon-'+resource_info.category.id+'.png'" alt="">
+                        </span>
                         <h4><a :href="base_url+'recursos/'+resource_info.slug">@{{ resource_info.title}}</a></h4>
                         <h3 v-if="resource_info.user.fullname" v-text="'author: '+resource_info.user.fullname"></h3>
                         <h3 v-else>author:</h3>

@@ -65,11 +65,14 @@ class ResourceController extends WebController
        $resource_download->resource_id = $resource->id;
        $resource_download->save();
 
-       $filename = 'resource.pdf';
-       $download_filename = $resource->slug.'.pdf';
-       file_put_contents(public_path('uploads/'.$filename), fopen($resource->attachment, 'r'));
-       $headers = array('Content-Type: application/pdf',);
-       return response()->download(public_path('uploads/'.$filename, $download_filename, $headers));
+//       $filename = 'resource.pdf';
+//       $download_filename = $resource->slug.'.pdf';
+//       file_put_contents(public_path('uploads/'.$filename), fopen($resource->attachment, 'r'));
+//       $headers = array('Content-Type: application/pdf',);
+//       return response()->download(public_path('uploads/'.$filename, $download_filename, $headers));
+
+       $download_filename = $resource->slug.$resource->attachment;
+       return response()->download(public_path('uploads/'.$resource->attachment, $download_filename));
    }
 
 

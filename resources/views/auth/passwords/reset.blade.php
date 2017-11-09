@@ -1,4 +1,11 @@
 @extends('layouts.layout')
+@section('styles')
+    <style>
+        span.has-error{
+            margin-top: -22px!important;
+        }
+    </style>
+@endsection
 @section('content')
 
     <div class="login_content" id="auth">
