@@ -56,6 +56,9 @@ class ResourceController extends Controller
         $tag_id = ($request->has('tag_id'))?$request->tag_id:null;
         $tag_slug = ($request->has('tag_slug'))?$request->tag_slug:null;
         $category_id = ($request->has('category_id'))?$request->category_id:null;
+        if($request->has('cat_slug') && !empty($request->cat_slug)){
+            $category_id = DB::table('categories')->where('slug',$request->cat_slug)->pluck('id');
+        }
         $search_text = ($request->has('search_text'))?$request->search_text:null;
 
         $resources = Resource::select('resources.*')->with(
@@ -142,8 +145,18 @@ class ResourceController extends Controller
             ]);
 
             $resource->save();
-
-            if($request->has('tag_ids')){
+            if($request->has('tag') && !empty($request->tag)){
+                $tag_id = DB::table('tags')->insertGetId([
+                    'label' => $request->tag,
+                    'slug' => $this->toSlug($request->tag),
+                ]);
+                DB::table('resource_tag')->insert([
+                    'resource_id' => $resource->id,
+                    'tag_id' => $tag_id  
+                ]);
+            }
+            elseif($request->has('tag_ids'))
+            {
                 if(is_array($request->tag_ids)){
                     $tag_ids = $request->tag_ids;
                     $tags = [];
@@ -184,7 +197,18 @@ class ResourceController extends Controller
 
             $resource->save();
 
-            if($request->has('tag_ids')){
+            if($request->has('tag') && !empty($request->tag)){
+                $tag_id = DB::table('tags')->insertGetId([
+                    'label' => $request->tag,
+                    'slug' => $this->toSlug($request->tag),
+                ]);
+                DB::table('resource_tag')->insert([
+                    'resource_id' => $resource->id,
+                    'tag_id' => $tag_id  
+                ]);
+            }
+            elseif($request->has('tag_ids'))
+            {
                 if(is_array($request->tag_ids)){
                     $tag_ids = $request->tag_ids;
                     $tags = [];

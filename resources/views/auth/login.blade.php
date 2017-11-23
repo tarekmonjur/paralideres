@@ -4,12 +4,15 @@
         span.has-error{
             margin-top: -22px!important;
         }
+        .login_s{
+            z-index:20!important;
+        }
     </style>
 @endsection
 
 @section('content')
 
-    <div class="login_content" id="auth">
+    <div class="login_content login_s" id="auth">
         <h2>Ingresa a Paralideres.org</h2>
         <div class="login_inner clearfix">
             <form id="login_form" v-on:submit.prevent="login('login_form','login')">

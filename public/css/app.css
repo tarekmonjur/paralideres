@@ -1047,7 +1047,7 @@ a:hover, a:focus {
         float: left;
         padding: 9px 10px;
         margin-top: 8px;
-        margin-right: 15px;
+        margin-right: 5px;
         margin-bottom: 8px;
         background-color: transparent;
         background-image: none;
@@ -1067,7 +1067,7 @@ a:hover, a:focus {
         right: 15px;
     }
     .home_login a {
-        padding: 7px 30px;
+        padding: 7px 18px;
     }
     .form_hide_m{
         display: none;
@@ -1212,36 +1212,48 @@ a:hover, a:focus {
     padding: 10px 15px;
     font-weight: bold;
     color: #54b1c4;
+    border-radius: 5px 5px 0px 0px;
 }
 .service_head h2{
     margin: 0;
-    font-size: 22px;
+    font-size: 18px;
     line-height: 20px;
+    color: #54b1c4;
+}
+.service_head h2 a{
+    color: #54b1c4;
 }
 .service_head h2 img{
     padding-right: 6px;
     position: relative;
     top: -3px;
+    width:44px;
+    height:38px;
 }
 .service_inner{}
 .service_inner > h4{
     padding: 0px 15px;
+    color: #232931;
+    font-size: 18px;
 }
 .service_inner > h4 a{
-    color: #334a5c;
+    color: #232931;
 }
 .service_inner > p{
     padding: 0px 15px;
+    font-size: 12px;
+    color: #77797a;
 }
 .author {
     padding: 5px 15px;
     position: absolute;
-    bottom: 62px;
+    bottom: 49px;
     width: 100%;
 }
 .author >h3{
-    font-size: 15px;
+    font-size: 12px;
     font-weight: bold;
+    color:#232931;
 
 }
 .author >h3 img {
@@ -1264,10 +1276,14 @@ a:hover, a:focus {
 }
 .comment span{
     display: inline-block;
-    font-size: 17px;
+    font-size: 14px;
     font-weight: bold;
+    color: #444950;
 }
-.comment span:first-child{}
+.comment span a{
+    color: #444950;
+}
+
 .comment span:first-child img{}
 .comment span:last-child{
     float: right;
@@ -1278,9 +1294,12 @@ a:hover, a:focus {
     height: 100%;
     background: #fff;
     text-align: center;
-    padding-top: 17px;
+    padding-top: 14px;
     color: #77797a;
 
+}
+.comment span:last-child span{
+        color: #77797a;
 }
 .comment span:last-child img{}
 .comment span{}
@@ -1728,7 +1747,7 @@ a:hover, a:focus {
 .author_head span:nth-of-type(1) img{
     margin-right: 5px;
 }
-.author_head span:nth-of-type(1) img{}
+.author_head span:nth-of-type(1) img{width:44px;}
 .author_head span:nth-of-type(2){
     float: right;
 }
@@ -1780,7 +1799,7 @@ a:hover, a:focus {
 .author_contect_inner{
     background: #fff;
     padding: 50px;
-    box-shadow: 4px 7px 10px #ddd;
+    box-shadow: 0px 1px 10px #ddd;
 }
 .author_contect_inner h2{
     font-size: 24px;
@@ -1904,6 +1923,7 @@ a:hover, a:focus {
     position: absolute;
     top: 0;
     left: 0;
+    width: 44px;
 }
 .blog_content_inner{}
 .social_share_area_2 {
@@ -2187,7 +2207,7 @@ a:hover, a:focus {
     float: right;
     padding-right: 10px;
     display: inline-block;
-    padding-top: 19px;
+    padding-top: 8px;
 }
 .login_inner span a{
     display: inline-block;
@@ -3252,3 +3272,186 @@ span.has-error{
       border-radius: 30px; }
     .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
       background: #869791; }
+
+
+
+/*this is feedback css (14.11)*/
+.login_content {
+    margin-bottom: 0px;
+    margin: 40px auto;
+}
+.author >h3 img {
+    padding-right: 0;
+    margin-right: 10px;
+}
+.home_login a {
+    background: #2e353e;
+    border: 1px solid #54b1c4;
+    color: #54b1c4;
+}
+.home_login a:hover {
+    background: #54b1c4;
+    border: 1px solid #54b1c4;
+}
+.nav li:last-child a {
+    background: #2e353e;
+    border: 1px solid #54b1c4;
+    color: #54b1c4;
+}
+.nav li:last-child a:hover {
+    background: #54b1c4;
+    border: 1px solid #54b1c4;
+}
+.footer_area a{
+    color: #fff;
+}
+@media(max-width:767px){
+    .step_1, .step_2, .step_3 {
+    height: 400px;
+    overflow: scroll;
+}
+.navbar-brand>img {
+    display: block;
+    width: 120px;
+    padding-top: 6px;
+}
+.home_login {
+    top: 9px;
+}    
+#login_form span.has-error {
+    margin-top: 0px!important;
+    padding-left: 0!important;
+    display: block;
+}
+span.has-error {
+    margin-top: 0px!important;
+    padding-left: 0!important;
+    display: block;
+}
+.service_inner_m img {
+    position: absolute;
+    top: 35px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+}
+.service_inner_m h4 {
+    font-size: 20px;
+        line-height: 17px;
+}
+.service_inner_m h4 a {
+    font-size: 20px;
+}
+.home_login a {
+    padding: 3px 20px;
+}
+.service_inner_m {
+    padding-right: 55px;
+}
+.cross_ic {
+    float: right;
+    margin-right: 12px;
+    position: absolute;
+    top: 15px;
+    cursor: pointer;
+    right: 0;
+}
+.create_resourse h2 {
+    padding-right: 50px;
+}
+.login_content {
+    margin-bottom: 0px;
+    margin: 100px auto;
+}
+.recurso_header .navbar-brand>img {
+    margin-left: 15px;
+}
+.login_content p {
+    font-size: 12px;
+    color: #54b1c4;
+    font-family: 'Fira Sans';
+    font-weight: bold;
+    padding-left: 0%;
+    clear: both;
+    position: relative;
+    top: 0px;
+}
+.login_content button {
+    position: relative;
+    z-index: 2;
+}
+
+.login_inner span {
+    float: left;
+}
+.upload_file {
+    width: 100%;
+    float: left;
+    margin-right: 0;
+    height: auto;
+}
+.upload_text {
+    width: 100%;
+    float: left;
+    margin-left: 0;
+    position: relative;
+    display: block;
+    background: #f9f9f9;
+    border: 2px solid #edeef0;
+    padding: 40px 20px 20px;
+    height: auto;
+    margin-top: 10px;
+}
+.input_content input{
+    border: 1px solid #A9A9A9
+}
+.input_content select{
+    border: 1px solid #A9A9A9
+}
+.input_content textarea ,.input_content textarea:focus{
+   border: 1px solid #A9A9A9!important;
+   box-shadow:none;
+   outline:0;
+}
+.resource_2, .resource_1 {
+    margin-top: 0px;
+}
+.final_step {
+    padding-left: 0;
+}
+.final_step h3 {
+    margin-top: 0;
+}
+.option_head h2 {
+    font-size: 32px;
+}
+.option_head h2:before {
+    top: 30%;
+}
+.option_head h2:after {
+    top: 30%;
+}
+}
+@media(max-width:390px){
+.service_inner_m h3 {
+    font-size: 15px;
+}
+.social_inner h3 a {
+    padding: 2px 7px;
+}
+.social_inner h3 {
+    font-size: 11.23px;
+    padding-left: 57px;
+}
+.footer_content_m ul li a {
+    font-size: 14px;
+}
+}
+
+.new_tag{
+    display: inline-block;
+    padding-left: 46px;
+    font-size: 12px;
+    color: #2e353e;
+    text-transform: uppercase;
+}

@@ -16,7 +16,7 @@
                         <form id="signup_form" v-on:submit.prevent="signup('signup_form','signup')">
                             <div class="col-sm-3" :class="{'has-error':errors.email}">
                                 <input type="email" class="form-control" name="email" v-on:keyup="signup('signup_form','')" placeholder="Ingresa tu email">
-                                <span v-if="errors.email" class="has-error" v-text="errors.email[0]"></span>
+                                <span v-if="errors.email" class="has-error" v-text="errors.email[0]"></span>ver/yo descargar discurso
                             </div>
                             <div class="col-sm-3" :class="{'has-error':errors.password}">
                                 <input type="password" class="form-control" name="password" v-on:keyup="signup('signup_form','')" placeholder="Ingresa una clave">
@@ -102,14 +102,14 @@
 ============================== --> 
 <section class="service_area form_hide_m">
     <div class="container">
-        <div :class="{'row': (index+1)%3==0}" v-for="(resource_info, index) in resources.data">
-            <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4" v-for="(resource_info, index) in resources.data">
                 <div class="service_inner">
                     <div class="service_head">
                         <h2>
                             <img v-if="resource_info.category && (resource_info.category.id == 9 || resource_info.category.id == 11 || resource_info.category.id == 12)" :src="asset+'images/icon/cat-icon-12.png'" alt="">
                             <img v-else-if="resource_info.category" :src="asset+'images/icon/cat-icon-'+resource_info.category.id+'.png'" alt="">
-                            <span v-text="resource_info.category.label"></span>
+                            <span><a :href="base_url+'recursos?category='+resource_info.category.slug" v-text="resource_info.category.label"></a></span>
                         </h2>
                     </div>
                     <h4><a :href="base_url+'recursos/'+resource_info.slug">@{{ resource_info.title}}</a></h4>
@@ -122,7 +122,7 @@
                         </h3>
                     </div>
                     <div class="comment">
-                        <span v-on:click.prevent="resourceDownload(resource_info)"><img :src="asset+'images/download.jpg'" alt="">ver/yo descargar discurso</span>
+                        <span><a :href="base_url+'recursos/'+resource_info.slug"><img :src="asset+'images/download.jpg'" alt="">ver/yo descargar discurso</a></span>
                         <span style="cursor: pointer" @if($auth) v-on:click.prevent="givenResourceLike(resource_info)" @else onclick="window.location.href='ingreser'" @endif>
                             <span v-if="resource_info.likes_count.length > 0" v-text="resource_info.likes_count[0].total"></span>
                             <span v-else>0</span>
@@ -162,7 +162,7 @@
                         <h4><a :href="base_url+'recursos/'+resource_info.slug">@{{ resource_info.title}}</a></h4>
                         <h3 v-if="resource_info.user.fullname" v-text="'author: '+resource_info.user.fullname"></h3>
                         <h3 v-else>author:</h3>
-                        <img :src="asset+'images/download2.png'" alt="">
+                        <a :href="base_url+'recursos/'+resource_info.slug"><img :src="asset+'images/download2.png'" alt=""></a>
                     </div>
                 </div>
                 <div class="col-md-12 clearfix text-center">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
@@ -22,8 +22,8 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script>
-        window.asset = 'http://localhost/paraliders/public/';
-        window.base_url = 'http://localhost/paraliders/';
+        window.asset = 'http://mediusware.com/demo/paraliders/public/';
+        window.base_url = 'http://mediusware.com/demo/paraliders/';
         window.api_url = 'api/v1/';
     </script>
 </head>
@@ -95,7 +95,7 @@
                             </select>
                             <span v-if="errors1.category_id" class="has-error" v-text="errors1.category_id[0]"></span>
                         </div>
-                        <div class="input_content clearfix">
+                        <div class="input_content clearfix" id="old_tag">
                             <label>ETIQUETAS</label>
                             <select id="select2" multiple name="tag_ids[]">
                                 <option value="">...SELECT ETIQUETAS...</option>
@@ -105,6 +105,12 @@
                                 @endforeach
                                 @endif
                             </select>
+                            <a class="new_tag" href="#" v-on:click.prevent="newTag">Crear nueva etiqueta</a>
+                        </div>
+                        <div class="input_content clearfix" id="new_tag">
+                            <label>NUEVA ETIQUETAS</label>
+                            <input type="text" name="tag" id="newTag" placeholder="NUEVA ETIQUETAS...">
+                            <a class="new_tag" href="#" v-on:click.prevent="oldTag">Seleccionar etiqueta</a>
                         </div>
                         <button v-on:click.prevent="createResourceSetp1" class="resource_2">Continuar</button>
                         <button v-on:click.prevent="closePopup" class="resource_1">Cancelar</button>
@@ -135,7 +141,7 @@
                                 </div>
                             </div>
                         </div>
-                        <span class="up_left_span">VOLVER AL PASO ANTERIOR</span>
+                        <span class="up_left_span"><a href="#" v-on:click.prevent="back1">VOLVER AL PASO ANTERIOR</a></span>
                         <button v-on:click.prevent="option2" class="resource_2">Continuar</button>
 
                 </div>
@@ -152,7 +158,7 @@
                             <textarea style="margin-bottom: 40px!important;" name="content" id="" cols="30" rows="10" placeholder="Escribe tu contenido aqui."></textarea>
                             <span style="padding-left: 0px!important;" v-if="errors2.content" class="has-error" v-text="errors2.content[0]"></span>
                         </div>
-                        <span class="up_left_span">VOLVER AL PASO ANTERIOR</span>
+                        <span class="up_left_span"><a href="#" v-on:click.prevent="back2">VOLVER AL PASO ANTERIOR</a></span>
                         <button v-on:click.prevent="createResourceSetp2" class="resource_2">Subir</button>
                         <button v-on:click.prevent="closePopup" class="resource_1">Cancelar</button>
 
@@ -175,7 +181,7 @@
                             <span style="margin-top: 0px!important;" v-if="errors3.attach" class="has-error" v-text="errors3.attach[0]"></span>
                         </div>
                         <p>PDF, DOC, DOCX, PPT, PPTX, RTF, TXT</p>
-                        <span class="up_left_span">VOLVER AL PASO ANTERIOR</span>
+                        <span class="up_left_span"><a href="#" v-on:click.prevent="back2">VOLVER AL PASO ANTERIOR</a></span>
                         <button v-on:click.prevent="createResourceSetp3" class="resource_2">Subir</button>
                         <button v-on:click.prevent="closePopup" class="resource_1">Cancelar</button>
 

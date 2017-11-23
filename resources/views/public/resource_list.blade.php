@@ -2,7 +2,10 @@
 @section('content')
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-559b5a0c386679ae" async="async"></script>
 
-<?php $tag_slug=(isset($_GET['tag']))?$_GET['tag']:'';?>
+<?php 
+$tag_slug=(isset($_GET['tag']))?$_GET['tag']:'';
+$cat_slug=(isset($_GET['category']))?$_GET['category']:'';
+?>
 
 <section class="service_area recurso_list" id="app">
     <div class="container">
@@ -15,7 +18,7 @@
                         <span class="num" v-if="resources.data && resources.data.length > 0" v-text="resources.total+' Recursos'"></span>
                         <span class="num" v-else> 0 Recursos</span>
                         <span>
-                                POR ORIGEN
+                                POR Etiqueta
                                 <select name="tag_id" v-on:change="filterResource">
                                   <option value="">...filter...</option>
                                   @foreach($tags as $tag)
@@ -28,7 +31,7 @@
                                 <select name="category_id" v-on:change="filterResource">
                                   <option value="">..filter..</option>
                                   @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->label}}</option>
+                                        <option value="{{$category->id}}" @if($cat_slug == $category->slug) selected @endif>{{$category->label}}</option>
                                   @endforeach
                                 </select>
                             </span>
@@ -40,10 +43,8 @@
                     </form>
                 </div>
             </div>
-            <div :class="{'row': (index+1)%3==0}" v-for="(resource_info, index) in resources.data">
 
-
-            <div class="col-md-4" >
+            <div class="col-md-4" v-for="(resource_info, index) in resources.data">
                 <div class="service_inner">
                     <div class="service_head">
                         <h2>
@@ -84,7 +85,6 @@
                     </div>
                 </div>
             </div>
-            </div>
             <div class="col-md-12 clearfix text-center">
                 <div class="service_btn" v-if="resources.data && resources.data.length > 0">
                     <a href="#" v-if="resources.next_page_url" v-on:click.prevent="getNextResources(resources.next_page_url)">ver mus recursus</a>
@@ -101,6 +101,7 @@
     <script>
         var search_text = '<?php $s=(isset($_GET['search_text']))?$_GET['search_text']:''; echo 'search_text='.$s;?>';
         var tag_slug = '<?php echo '&tag_slug='.$tag_slug;?>';
+        var cat_slug = '<?php echo '&cat_slug='.$cat_slug;?>';
     </script>
     <script type="text/javascript" src="{{asset('js/resource_list.js')}}"></script>
 @endsection

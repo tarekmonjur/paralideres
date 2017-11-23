@@ -119,7 +119,8 @@ class PollController extends Controller
 
         if ($hasVoted) {
             $poll = Poll::with('options.votes', 'options.votes.user')->findOrFail($id);
-            return $this->setResponse($poll, 'warning', 'OK', '200', 'Warning!', 'Only one vote per user per poll');
+            //return $this->setResponse($poll, 'warning', 'OK', '200', 'Warning!', 'Only one vote per user per poll');
+             return $this->setResponse($poll, 'success', 'OK', '200', 'Vota el éxito', 'Gracias! Tu voto ha sido enviado');
         }
 
         $pollVote = new PollVote([

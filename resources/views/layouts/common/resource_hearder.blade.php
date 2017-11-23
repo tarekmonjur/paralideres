@@ -1,4 +1,4 @@
-<header class="header_area" @if($auth) id="auth" @endif>
+<header class="header_area recurso_header" @if($auth) id="auth" @endif>
     <nav class="navbar navbar-default">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->

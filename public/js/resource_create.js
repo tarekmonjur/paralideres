@@ -11,8 +11,25 @@ $(document).ready(function(){
                 errors2: [],
                 errors3: [],
             },
+            
+            created(){
+                $("#old_tag").show();
+                $("#new_tag").hide();
+            },
 
             methods: {
+                
+                newTag(){
+                    $('#select2').prop('selectedIndex', -1);
+                    $("#old_tag").hide();
+                    $("#new_tag").show();
+                },
+                
+                oldTag(){
+                    $('#newTag').val("");
+                    $("#old_tag").show();
+                    $("#new_tag").hide();
+                },
 
                 option1(){
                     $(".step_2").hide();
@@ -27,6 +44,17 @@ $(document).ready(function(){
                 closePopup(){
                     $(".popup_content").removeClass("open_content");
                     $(".step_1 ,.step_2 ,.step_3, .step_4").hide();
+                },
+                
+                back1(){
+                   $(".step_1").show();
+                   $(".step_2").hide();
+                },
+                
+                back2(){
+                     $(".step_2").show();
+                     $(".step_3").hide();
+                     $(".step_4").hide();
                 },
 
                 createResourceSetp1(){
